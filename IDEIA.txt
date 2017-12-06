@@ -1,0 +1,47 @@
+Escolha quanto quer doar
+O sistema indica a quantidade em bitcoins
+
+O valor doado se transforma em um token de credito
+
+Seu token ativo começa render de acordo com a faixa de valor
+
+Para resgatar indique a quantidade de tokens quer vender
+
+Paga a reentrada 
+
+Algum participante querendo entrar vai doar pra você a quantidade solcitada
+
+
+Tabela de doações
+data
+valor
+doador
+recebedor
+comprovante
+status
+
+Tabela de tokens
+data
+valor
+expira
+usuario
+
+Extrato de bonus
+data
+valor
+indicado
+usuario
+
+Tabela de reentradas
+usuario
+id resgate
+valor
+recebedor
+data
+comprovante
+
+Tabela de resgate
+usuario
+valor
+id reentrada
+status
