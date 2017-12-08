@@ -6,28 +6,28 @@ class Boadmin extends CI_Controller {
         parent::__construct();
 
         $this->load->model('admin_model', 'admin');
-        $this->load->helper('bancos');
-        $this->load->helper('tickets');
-        $this->load->helper('configuracoes_helper');
+        // $this->load->helper('bancos');
+        // $this->load->helper('tickets');
+        // $this->load->helper('configuracoes_helper');
 
-        $this->load->library('googleurlapi');
+        // $this->load->library('googleurlapi');
 
-        $this->load->library('cifrete');
+        // $this->load->library('cifrete');
 
-        if($this->input->post('search')){
+        // if($this->input->post('search')){
 
-            $this->db->where('login',$this->input->post('search'));
-            $users = $this->db->get('usuarios');
+        //     $this->db->where('login',$this->input->post('search'));
+        //     $users = $this->db->get('usuarios');
 
-            if($users->num_rows() > 0 ){
+        //     if($users->num_rows() > 0 ){
 
-                $user = $users->row();
+        //         $user = $users->row();
 
-                redirect('boadmin/usuario/'.$user->id);
-            }
+        //         redirect('boadmin/usuario/'.$user->id);
+        //     }
 
-           redirect('boadmin/usuario/'.$this->input->post('search') );
-        }
+        //    redirect('boadmin/usuario/'.$this->input->post('search') );
+        // }
 
     }
 
@@ -45,6 +45,8 @@ class Boadmin extends CI_Controller {
         $this->load->view('admin/index');
         $this->load->view('admin/templates/footer');        
     }
+
+
 
     public function login(){
 
@@ -96,6 +98,13 @@ class Boadmin extends CI_Controller {
         $this->load->view('admin/afiliado-editar');
         $this->load->view('admin/templates/footer');
     }
+
+    public function pacotes(){
+
+        
+    }
+
+    
 
     public function usuarios(){
 

@@ -1,3 +1,35 @@
+Faz cadastro
+entra com status 0 (inativo)
+
+Guarda o indicador direto
+
+Realiza pedido de pacote
+*Pedido de pacote pago
+- Muda status para 1 (ativo)
+- Insere saldo
+- Pontua na carreira os pontos do plano
+
+Movimenta rede BINARIA
+- Derrama na rede do indicador observando a perna
+- Pontua o indicador na carreira
+- Pontua todos acima observando a perna de cada
+
+Movimenta rede UNILEVEL
+- Bonifica o indicador (bonus direta)
+
+*Cada bonificação deve comparar o saldo atual como teto diario
+
+Tarefas cron diarias
+
+- Rendimento diario
+- Pagamento diario do binario percentual do plano do usuario sobre a menor perna
+- Subtrai a maior pontuação da menor e pontua na maior o residuo
+
+- Todo dia 5 subtriai a mensalidade de acordo com o plano.
+
+
+https://github.com/akveo/ngx-admin
+
 Escolha quanto quer doar
 O sistema indica a quantidade em bitcoins
 
@@ -45,3 +77,22 @@ usuario
 valor
 id reentrada
 status
+
+
+Pontos de ativação
+
+Pontos indicacao binario
+- Derramento infinito de pontos para os indicadores
+
+Bonus de indicação direta
+
+Bonus binario (derramamento)
+Menor perna
+
+Rendimento diário
+
+Doação minima
+
+Teto binario diario
+
+Mensalidade
