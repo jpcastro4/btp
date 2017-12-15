@@ -5,10 +5,16 @@ class Ajax_functions extends CI_Controller {
     public function __construct(){
         parent::__construct();
 
+        $this->load->model('usuario_model');
     }
 
     public function index(){
         echo 'Not permission';
+    }
+
+    public function processaPagamento(){
+
+        $this->usuario_model->processaPagamento();
     }
 
     public function resolution(){
@@ -190,39 +196,7 @@ class Ajax_functions extends CI_Controller {
 
 
 
-
-
-    public function geneses(){
-
-        $this->backoffice_model->geneses();
-    }
-
-    public function geneses2(){
-
-        $this->backoffice_model->geneses2();
-    }
-
-    public function geneses3(){
-
-        $this->backoffice_model->geneses3();
-    }
-
-
-
-    public function implante($id){
-
-        $this->backoffice_model->alimentaCiclo1($id);
-    }
-
-    public function implante2($id){
-
-        $this->backoffice_model->alimentaCiclo2($id);
-    }
-
-    public function implante3($id){
-
-        $this->backoffice_model->alimentaCiclo3($id);
-    }
+    
 
     
 

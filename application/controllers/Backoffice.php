@@ -132,6 +132,39 @@ class Backoffice extends CI_Controller {
 
     }
 
+    public function cadastrar($indicadorLogin=null){
+        
+        $data = array();
+
+        if(!empty($indicadorLogin)){
+
+            $this->db->where('usuarioLogin', $indicadorLogin);
+            $user = $this->db->get('usuarios');
+
+            if($user->num_rows() > 0){
+
+                $this->native_session->set_flashdata('indicador', $indicadorLogin);
+                $this->native_session->set_flashdata('nome_completo', $user->row()->usuarioNome);
+            } 
+        }       
+
+        $this->load->view('backoffice/cadastrar', $data); 
+    }
+
+    public function carrinho($pacoteID){
+
+        $data['pacote'] = $this->admin_model->get_pacote($pacoteID);
+        $this->load->view('backoffice/carrinho', $data); 
+
+    }
+
+    public function pagamento($processamentoID){
+
+
+    }
+
+
+
     //---------------------------------------------------------------------------- CONTA 
     
 
@@ -270,15 +303,6 @@ class Backoffice extends CI_Controller {
         $this->load->view('backoffice/usuario');
         $this->load->view('backoffice/templates/footer');
     }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -487,60 +511,60 @@ class Backoffice extends CI_Controller {
 
     
     // CADASTRO DIRETO NO DERRAMAMENTO
-    public function cadastrar($login = 'liderbrasil'){
+    // public function cadastrar($login = 'liderbrasil'){
 
-        $this->native_session->unset_userdata('user_id');
-        $this->native_session->unset_userdata('conta_id');
+    //     $this->native_session->unset_userdata('user_id');
+    //     $this->native_session->unset_userdata('conta_id');
 
 
-        if($this->input->post("submit")){
+    //     if($this->input->post("submit")){
 
-            $this->usuario_model->NovoUsuario();
-        }
+    //         $this->usuario_model->NovoUsuario();
+    //     }
 
        
-        $data = array();
+    //     $data = array();
 
-        $this->db->where('login', $login);
-        $matriz = $this->db->get('usuarios');
+    //     $this->db->where('login', $login);
+    //     $matriz = $this->db->get('usuarios');
 
-        $id_matriz = $matriz->row()->id;
+    //     $id_matriz = $matriz->row()->id;
 
-        $this->db->where('id_indicador',$id_matriz);
-        $numInidcacoes = $this->db->get('indicadores');
+    //     $this->db->where('id_indicador',$id_matriz);
+    //     $numInidcacoes = $this->db->get('indicadores');
 
-        if($numInidcacoes->num_rows() < 3 ){
+    //     if($numInidcacoes->num_rows() < 3 ){
 
-            $indicadorLinkUnico = $id_matriz;
+    //         $indicadorLinkUnico = $id_matriz;
 
-        }else{
+    //     }else{
             
-            $indicadorLinkUnico = $this->painel_model->LinkUnico($id_matriz);
-        }
+    //         $indicadorLinkUnico = $this->painel_model->LinkUnico($id_matriz);
+    //     }
 
 
-        if($indicadorLinkUnico == $id_matriz){
+    //     if($indicadorLinkUnico == $id_matriz){
 
-            $data['aguardando'] = true;
+    //         $data['aguardando'] = true;
 
-        }else{
+    //     }else{
 
-            $this->db->where('id', $indicadorLinkUnico);
-            $indicador = $this->db->get('usuarios');
+    //         $this->db->where('id', $indicadorLinkUnico);
+    //         $indicador = $this->db->get('usuarios');
 
-            if(!is_null($login)){
+    //         if(!is_null($login)){
 
-                $this->native_session->set('indicador', $indicador->row()->login);
-                $this->native_session->set('nome_completo', $indicador->row()->nome);
+    //             $this->native_session->set('indicador', $indicador->row()->login);
+    //             $this->native_session->set('nome_completo', $indicador->row()->nome);
 
-                $data['aguardando'] = false;
-            }
-        }    
+    //             $data['aguardando'] = false;
+    //         }
+    //     }    
 
-        $data['mensagem'] = $this->native_session->get_flashdata("mensagem");
+    //     $data['mensagem'] = $this->native_session->get_flashdata("mensagem");
 
-        $this->load->view('painel/cadastrar', $data);
-    }
+    //     $this->load->view('painel/cadastrar', $data);
+    // }
 
 	
 
