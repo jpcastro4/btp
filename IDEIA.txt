@@ -1,3 +1,31 @@
+﻿BENEFICIOS
+
+Pontos de ativação
+
+Pontos indicacao binario
+- Derramento infinito de pontos para os indicadores
+
+Bonus de indicação direta
+
+Bonus binario (derramamento)
+Menor perna
+
+Rendimento diário
+
+
+------
+OBRIGAÇÕES
+
+Doação minima
+
+Teto binario diario
+
+Mensalidade
+
+
+-----
+ROTINA CADASTRO
+
 Faz cadastro dos dados basicos
 Entra com status 0 (inativo)
 Guarda o indicador direto
@@ -24,6 +52,9 @@ Realiza pedido de pacote
 - Insere saldo
 - Pontua na carreira os pontos do plano
 
+-----
+ROTINAS BINARIO
+
 Movimenta rede BINARIA
 - Derrama na rede do indicador observando a perna
 - Pontua o indicador na carreira
@@ -36,38 +67,30 @@ Movimenta rede UNILEVEL
 
 Redireciona para pagina home do backoffice
 
-
-Tarefas cron diarias
+-------
+TAREFAS CRON
 
 - Rendimento diario
 - Pagamento diario do binario percentual do plano do usuario sobre a menor perna
 - Subtrai a maior pontuação da menor e pontua na maior o residuo
 
-- Todo dia 5 subtriai a mensalidade de acordo com o plano.
+- Todo mes 5 subtriai a mensalidade de acordo com o plano.
 
 
 https://github.com/akveo/ngx-admin
 
 
+---
+Cotação do BTP
+
+Livro de ordem doações
+
+ordemID
+usuarioID
+ordemValor
+ordemStatus
+ordemUsuarioIdExec
+ordemDataEntrada
+ordemDataExec
 
 
-
-
-
-Pontos de ativação
-
-Pontos indicacao binario
-- Derramento infinito de pontos para os indicadores
-
-Bonus de indicação direta
-
-Bonus binario (derramamento)
-Menor perna
-
-Rendimento diário
-
-Doação minima
-
-Teto binario diario
-
-Mensalidade
