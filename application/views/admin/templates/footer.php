@@ -1,174 +1,227 @@
-        <!-- BEGIN FOOTER -->
-        
-        <!-- BEGIN INNER FOOTER -->
-        <div class="page-footer">
-            <div class="container"> 2014 &copy; Rede ADS 50
-                <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
-            </div>
-        </div>
-        <div class="scroll-to-top">
-            <i class="icon-arrow-up"></i>
-        </div>
-        <!-- END INNER FOOTER -->
-        <!-- END FOOTER -->
-        <!--[if lt IE 9]>
-            <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/respond.min.js"></script>
-            <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/excanvas.min.js"></script> 
-        <![endif]-->
 
-        <!-- BEGIN CORE PLUGINS -->
-        <script   src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-        
+    </div>
+</div>
+    
 
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-        <!-- END CORE PLUGINS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    
 
-        <!-- BEGIN THEME GLOBAL SCRIPTS -->
-        <script src="<?php echo base_url();?>assets/admin/assets/global/scripts/app.min.js" type="text/javascript"></script>
-        <!-- END THEME GLOBAL SCRIPTS -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/lib/noty.css" />
+    <script src="<?php echo base_url()?>assets/lib/noty.js"></script>
 
-        <!-- BEGIN THEME LAYOUT SCRIPTS -->
-        <script src="<?php echo base_url();?>assets/admin/assets/layouts/layout3/scripts/layout.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/layouts/layout3/scripts/demo.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
-        <!-- END THEME LAYOUT SCRIPTS -->
+    <script src="<?php echo base_url()?>assets/js/jquery.ajaxfileupload.js"></script>
+ 
+    <script type="text/javascript">
 
-        <?php if(!empty($pg_home)):?>
+        var app = {
 
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/moment.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL PLUGINS -->
+            news: function(message,typeNews){
 
-        <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="<?php echo base_url();?>assets/admin/assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL SCRIPTS -->
-        <?php endif;?>
-        
+                new Noty({                        
+                            text: message,
+                            layout: 'topRight',
+                            type: typeNews,
+                            timeout : '1500',
+                            theme: 'metroui',
+                            modal: true,
+                            progressBar: false,
+                        }).show();
+            }
+        }
+      
+ 
 
-        <?php if(!empty($pg_usuario) OR !empty($pg_editausuario)):?>
+      $(document).ready(function(){
 
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL PLUGINS -->
+            <?php if(isset($mensagem) ):  ?>
+            app.news('<?php echo $mensagem;?>','success')
+            <?php endif;?>
 
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL PLUGINS -->
+            <?php if(isset($mensagem_erro)):  ?>
+            app.news('<?php echo $mensagem_erro;?>','error')
+            <?php endif;?>
 
-        <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="<?php echo base_url();?>assets/admin/assets/pages/scripts/profile.min.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL SCRIPTS -->
-        <script src="<?php echo base_url();?>assets/admin/assets/layouts/layout3/scripts/layout.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/layouts/layout3/scripts/demo.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+        setTimeout(function() {
+            $(".alert-fadeout").fadeOut();
+        }, 3000);
 
-        <script src="<?php echo base_url();?>assets/admin/assets/pages/scripts/components-bootstrap-switch.min.js" type="text/javascript"></script>
-        
-        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script> 
 
-        <script type="text/javascript">
-            
-        jQuery(function($){
-            $(document).ready( function() {
-                $( "#draggable" ).draggable();
+        $('input[type=submit],button[type=submit],a.excluir').on('click', function(){
 
-            });          
+            $('.loading').fadeIn();
+        })
+
+        $(document).on('keyup',function(e){
+           
+            if(e.keyCode == 27){
+                $('.loading').fadeOut();
+            }
         });
-        </script>
 
-        <?php endif;?>
-
-
-
-        <?php if(!empty($pg_usuarios) ):?>
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <script src="<?php echo base_url();?>assets/ajuda/javascripts/jquery.countdown.js" type="text/javascript"></script>
-        <script type="text/javascript">
+        $('input[type=submit],button[type=submit]').on('click' ,function(event){
             
-        jQuery(function($){
-            $(document).ready( function() {
+            var valid = true
 
-                $('[data-countdown]').each(function() {
-                  var $this = $(this), finalDate = $(this).data('countdown');
-                  $this.countdown(finalDate, function(event) {
-                    $this.html(event.strftime('%d %H:%M:%S'));
-                  });
-                });
+            var form = $(this).parents('form')            
 
-            });          
-        });
-        </script>
+            form.find('[required]').each(function(index,e){
+                if ( $(this).val() == '' ){
 
-        <script src="<?php echo base_url();?>assets/admin/assets/global/scripts/datatable.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
-        
-        <script src="<?php echo base_url();?>assets/admin/assets/pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>
-        
-        <?php endif;?>
+                    $(this).css('border-color','red')
+                    valid = false
+                    return
+                 } 
+            })
 
-        <?php if(!empty($pg_emails) ):?>
+            if(valid == false){
+                app.news('Campos vazios','error')
+                $('.loading').fadeOut()
+                event.preventDefault()
+                return
+            }
 
-        <script src="<?php echo base_url();?>assets/admin/assets/email/trumbowyg.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/email/plugins/base64/trumbowyg.base64.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/email/plugins/noembed/trumbowyg.noembed.min.js" type="text/javascript"></script>
+            form.submit()
+        })
 
-        <script type="text/javascript">
-            
-        // jQuery(function($){
-        //     $(document).ready( function() {
-                $('#default-editor')
-                .trumbowyg({
+        if( window.sessionStorage.getItem('open-painel') ){
+            var painel = $('[data-painel='+window.sessionStorage.getItem('open-painel')+']') 
+            painel.fadeIn().addClass('ativo')
+            $('html,body').animate({scrollTop: painel.offset().top},'slow')
+
+            window.sessionStorage.removeItem('open-painel')
+        }
+
+        $('[data-open-painel]').on('click', function(e){
+            e.preventDefault()
+
+            var $this = $(this).data('open-painel'),
+                painel = $('[data-painel='+$this+']')
+
+            if( painel.hasClass('ativo') ){
+                painel.slideToggle().removeClass('ativo')
+                window.sessionStorage.removeItem('open-painel')
+            }else{
+                window.sessionStorage.setItem('open-painel',$this)
+                painel.slideToggle().addClass('ativo')
+                $('html,body').animate({scrollTop: painel.offset().top},'slow')
+            }
+        })
+
+
+
+        $('#add-produto').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget)  
+          var recipient = button.data('veiculo')  
+ 
+          var modal = $(this)
+ 
+          modal.find('input[name=veiculoID]').val(recipient)
+        })
+
+        $('li.apto').on('click', function(){
+
+            var $this = $(this),
+                emp = $(this).data('emp'),
+                andar = $(this).data('andar'),
+                apto = $(this).data('apto')
+
                 
-                btnsDef: {
-                    // Create a new dropdown
-                    image: {
-                        dropdown: ['insertImage', 'base64', 'noembed'],
-                        ico: 'insertImage'
-                    }
-                },
-               
-                btns: ['viewHTML',
-                        '|', 'formatting',
-                        '|', 'btnGrp-semantic',
-                        '|', 'link',
-                        '|', ['image'],
-                        '|', 'btnGrp-justify',
-                        '|', 'btnGrp-lists',
-                        '|', 'horizontalRule']
-            });
-        //     });          
-        // });
-        </script>
-        <?php endif;?>
 
-        <!-- DRAGABLE -->
+            $.post(ajaxUrl+'statusApto', {emp:emp,andar:andar,apto:apto}, function(data){
+
+                if(data.status == 'success'){
+
+                    if(data.novostatus == true ){
+                        $this.addClass('apto-livre animated flipInX').removeClass('apto-reservado')
+                    }
+
+                    if(data.novostatus == false ){
+                        $this.addClass('apto-reservado animated flipInX').removeClass('apto-livre')
+                    }
+
+                }
+
+                if(data.status == 'error'){
+
+                    alert('Erro')
+                }
+            },'json')
+            .fail(function(data){
+                alert('Erro total')
+                console.log(data.responseText )
+            }) 
+
+        })
 
         
-    </body>
+        $('input[name=mudaAndares]').on('change', function(){
 
+            var sessaoAndares = $('.editar-andares')
+
+            if( sessaoAndares.hasClass('ativo') ){
+
+                sessaoAndares.fadeOut().removeClass('ativo')
+            
+            }else{
+
+                sessaoAndares.fadeIn().addClass('ativo')
+            }
+        })
+
+
+
+        if( $('input[name=empPrimeiroDif]').is(':checked') ){
+
+            $('input[name=empPrimeiroPavi]').parents('.hidden').show().addClass('ativo')
+
+        }else{
+
+            $('input[name=empPrimeiroPavi]').parents('.hidden').hide().removeClass('ativo')
+        }
+
+        $('input[name=empPrimeiroDif]').on('change', function(){
+
+            var primPavi = $('input[name=empPrimeiroPavi]').parents('.hidden')
+
+           console.log(primPavi)
+
+           console.log( primPavi.hasClass('ativo') )
+
+            if( primPavi.hasClass('ativo') ){
+
+                primPavi.fadeOut().removeClass('ativo')
+            
+            }else{
+
+                primPavi.fadeIn().addClass('ativo')
+            }
+        })
+
+        $('.excluir').on('click', function(e){
+            e.preventDefault();
+
+            var $this = $(this)
+            var r = confirm("Tem certeza que deseja excluir o arquivo?")
+            
+            if( r == true ){
+
+                $.get(ajaxUrl+'excluir_arquivo/'+$(this).data('excluir'), function(data){
+                    $this.parents('.col-4').fadeOut().remove()
+                    $('.loading').fadeOut();
+                    app.news('Arquivo excluído','success')
+                } )
+                .fail(function(data){
+                    $('.loading').fadeOut();
+                    alert(data.responseText)
+                })
+            }
+        
+        })
+
+    });
+    </script>
+
+  </body>
 </html>

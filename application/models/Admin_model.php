@@ -42,6 +42,221 @@ class Admin_model extends CI_Model{
         return '<div class="alert alert-danger text-center">Usuário ou senha inválidos.</div>';
     }
 
+    public function Configuracoes(){
+
+        $config = $this->db->get('website_config');
+
+        return $config->row();
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////   CONFIGURAÇÕES
+
+
+    public function AtualizarConfiguracoes(){
+
+        //check_session_admin();
+
+        $nome_site = $this->input->post('nome_site');
+        $email_remetente = $this->input->post('email_remetente');
+        
+        $permitir_transferencia_membros = $this->input->post('permitir_transferencia_membros');
+        $valor_minimo_transferencia = $this->input->post('valor_minimo_transferencia');
+         
+        $saque_disponivel = $this->input->post('saque_disponivel');
+        $valor_maximo_saque = $this->input->post('valor_maximo_saque');
+         
+        $taxa_saque = $this->input->post('taxa_saque');
+         
+        $manutencao = $this->input->post('manutencao');
+        $aviso = $this->input->post('aviso');
+         
+        $array_config = array(
+            'nome_site'=>$nome_site,
+            'email_remetente'=>$email_remetente,
+                                                              
+            'saque_disponivel'=>$saque_disponivel,
+            'valor_maximo_saque'=>str_replace(",", ".", $valor_maximo_saque),
+             
+            'taxa_saque'=>str_replace(",", ".", $taxa_saque),
+            'manutencao'=>$manutencao,
+            'aviso'=>$aviso
+        );
+
+        if(!empty($_FILES['imagem_logo']['name'])){
+
+            $config_login['upload_path'] = 'uploads';
+            $config_login['allowed_types'] = 'bmp|gif|png|jpg|jpeg|pjpeg';
+            $config_login['overwrite'] = true;
+            $config_login['file_name'] = 'imagem_logo';
+
+            $this->upload->initialize($config_login);
+
+            $this->upload->do_upload('imagem_logo');
+            $upload_login = $this->upload->data();
+
+            $array_config['imagem_logo'] = $upload_login['file_name'];
+        }
+
+        if(!empty($_FILES['imagem_logo_backoffice']['name'])){
+
+            $config_bo['upload_path'] = 'uploads';
+            $config_bo['allowed_types'] = 'bmp|gif|png|jpg|jpeg|pjpeg';
+            $config_bo['overwrite'] = true;
+            $config_bo['file_name'] = 'imagem_logo_backoffice';
+
+            $this->upload->initialize($config_bo);
+
+            $this->upload->do_upload('imagem_logo_backoffice');
+            $upload_bo = $this->upload->data();
+
+            $array_config['imagem_logo_backoffice'] = $upload_bo['file_name'];
+        }
+
+        if(!empty($_FILES['imagem_logo_admin']['name'])){
+
+            $config_admin['upload_path'] = 'uploads';
+            $config_admin['allowed_types'] = 'bmp|gif|png|jpg|jpeg|pjpeg';
+            $config_admin['overwrite'] = true;
+            $config_admin['file_name'] = 'imagem_logo_admin';
+
+            $this->upload->initialize($config_admin);
+
+            $this->upload->do_upload('imagem_logo_admin');
+            $upload_admin = $this->upload->data();
+
+            $array_config['imagem_logo_admin'] = $upload_admin['file_name'];
+        }
+
+        if(!empty($_FILES['favicon']['name'])){
+
+            $config_fav['upload_path'] = './uploads/';
+            $config_fav['allowed_types'] = 'gif|png|jpg|jpeg|pjpeg|ico';
+            $config_fav['overwrite'] = true;
+            $config_fav['file_name'] = 'favicon';
+
+            $this->upload->initialize($config_fav);
+
+            $this->upload->do_upload('favicon');
+            $upload_favicon = $this->upload->data();
+
+            $array_config['favicon'] = $upload_favicon['file_name'];
+        }
+
+        $update = $this->db->update('website_config', $array_config);
+
+        if($update){
+
+            redirect('admin/configuracoes');
+        }
+
+        
+        redirect('admin/configuracoes');
+
+    }
+
+//////////////////////////////////////////////////////////////////////////////////////   LISTA DE PRESENCA
+
+    public function get_lista_presenca(){
+
+        $result = $this->db->get("lista_presenca");
+
+        if($result->num_rows() > 0){
+
+            return $result->result();
+        }
+        return false;
+    }
+
+//////////////////////////////////////////////////////////////////////////////////////   PACOTES
+
+    public function get_pacotes(){
+
+        $result = $this->db->get("pacotes");
+
+        if($result->num_rows() > 0){
+
+            return $result->result();
+        }
+        return false;
+    }
+
+    public function get_pacote($pacoteID){
+
+        $this->db->where("pacoteID",$pacoteID);
+        $result = $this->db->get("pacotes");
+
+        if($result->num_rows() > 0){
+
+            return $result->row();
+        }
+        return false;
+    }
+
+    public function pacote($pacoteID=null){
+
+        $campos = $this->input->post();
+        
+        if(empty($campos['pacoteImg'])){
+            unset($campos['pacoteImg']);
+        }else{
+
+            $config_admin['upload_path'] = './uploads/';
+            $config_admin['allowed_types'] = 'bmp|gif|png|jpg|jpeg|pjpeg';
+            $config_admin['overwrite'] = true;
+            $config_admin['file_name'] = $campo['pacoteNome'];
+
+            $this->upload->initialize($config_admin);
+
+            $this->upload->do_upload('logo_admin');
+            $imgPacote = $this->upload->data();
+
+            $campos['pacoteImg'] = $imgPacote['file_name'];
+        }
+
+        if($pacoteID == null ){
+
+            $result = $this->db->insert('pacotes',$campos);
+
+        }else{
+
+            $this->db->where('pacoteID',$pacoteID);
+            $result = $this->db->update('pacotes',$campos);
+
+        }
+        
+        if($result){
+            //$this->sucess('Pacote Salvo');
+        }
+        //$this->error('Erro ao salvar');
+
+        redirect('admin/pacotes');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //////////////////////////////////////////////////////////////////////////////////////   INDEX
 
     public function Percentual($total, $parcial){
@@ -127,6 +342,16 @@ class Admin_model extends CI_Model{
             return $extrato->result();
         }
     }
+
+
+
+
+
+
+
+
+
+
 
 
     
@@ -1165,150 +1390,7 @@ class Admin_model extends CI_Model{
         $this->db->delete('admin_login');
     }
 
-    public function Configuracoes(){
-
-        $config = $this->db->get('website_config');
-
-        return $config->row();
-    }
-
-    public function AtualizarConfiguracoes(){
-
-        //check_session_admin();
-
-        $nome_site = $this->input->post('nome_site');
-        $email_remetente = $this->input->post('email_remetente');
-        $valor_indicacao = $this->input->post('valor_indicacao');
-        $valor_cota = $this->input->post('valor_cota');
-        $maximo_cotas = $this->input->post('maximo_cotas');
-        $validade_cotas = $this->input->post('validade_cotas');
-        $permitir_transferencia_membros = $this->input->post('permitir_transferencia_membros');
-        $valor_minimo_transferencia = $this->input->post('valor_minimo_transferencia');
-        $pagar_com_saldo = $this->input->post('pagar_com_saldo');
-        $taxa_pagamento_saldo = $this->input->post('taxa_pagamento_saldo');
-        $saque_disponivel = $this->input->post('saque_disponivel');
-        $valor_minimo_saque = $this->input->post('valor_minimo_saque');
-        $dias_saque = $this->input->post('dias_saque');
-        $taxa_saque = $this->input->post('taxa_saque');
-        $pagamento_automatico = $this->input->post('pagamento_automatico');
-        $proxima_execucao = $this->input->post('proxima_execucao');
-        $hora_pagamento = $this->input->post('hora_pagamento');
-        $valor_minimo_pago = $this->input->post('valor_minimo_pago');
-        $valor_maximo_pago = $this->input->post('valor_maximo_pago');
-        $paga_fim_de_semana = $this->input->post('paga_fim_de_semana');
-        $permitir_renovacao_automatica = $this->input->post('permitir_renovacao_automatica');
-        $ativa_gerencianet = $this->input->post('ativa_gerencianet');
-        $token_gerencianet = $this->input->post('token_gerencianet');
-        $permitir_cadastro_anuncio = $this->input->post('permitir_cadastro_anuncio');
-
-        $array_config = array(
-                                                'nome_site'=>$nome_site,
-                                                'email_remetente'=>$email_remetente,
-                                                'valor_indicacao'=>str_replace(",", ".", $valor_indicacao),
-                                                'valor_cota'=>str_replace(",", ".", $valor_cota),
-                                                'maximo_cotas'=>$maximo_cotas,
-                                                'validade_cotas'=>$validade_cotas,
-                                                'permitir_transferencia_membros'=>$permitir_transferencia_membros,
-                                                'valor_minimo_transferencia'=>str_replace(",", ".", $valor_minimo_transferencia),
-                                                'pagar_com_saldo'=>$pagar_com_saldo,
-                                                'taxa_pagamento_saldo'=>str_replace(",", ".", $taxa_pagamento_saldo),
-                                                'saque_disponivel'=>$saque_disponivel,
-                                                'valor_minimo_saque'=>str_replace(",", ".", $valor_minimo_saque),
-                                                'dias_saque'=>$dias_saque,
-                                                'taxa_saque'=>str_replace(",", ".", $taxa_saque),
-                                                'pagamento_automatico'=>$pagamento_automatico,
-                                                'hora_pagamento'=>$hora_pagamento,
-                                                'valor_minimo_pago'=>$valor_minimo_pago,
-                                                'valor_maximo_pago'=>$valor_maximo_pago,
-                                                'paga_fim_de_semana'=>$paga_fim_de_semana,
-                                                'permitir_renovacao_automatica'=>$permitir_renovacao_automatica,
-                                                'ativa_gerencianet'=>$ativa_gerencianet,
-                                                'token_gerencianet'=>$token_gerencianet,
-                                                'permitir_cadastro_anuncio'=>$permitir_cadastro_anuncio
-                                                );
-
-        $data_cron = converter_data($proxima_execucao);
-        $data_completa = $data_cron.' '.$hora_pagamento;
-        $nova_data_cron = strtotime($data_completa);
-
-        $this->db->update('cron', array('proxima_execucao'=>$nova_data_cron));
-
-        if(!empty($_FILES['logo_login']['name'])){
-
-            $config_login['upload_path'] = 'uploads';
-            $config_login['allowed_types'] = 'bmp|gif|png|jpg|jpeg|pjpeg';
-            $config_login['overwrite'] = true;
-            $config_login['file_name'] = 'logo_login';
-
-            $this->upload->initialize($config_login);
-
-            $this->upload->do_upload('logo_login');
-            $upload_login = $this->upload->data();
-
-            $array_config['imagem_logo'] = $upload_login['file_name'];
-
-        }
-
-        if(!empty($_FILES['logo_backoffice']['name'])){
-
-            $config_bo['upload_path'] = 'uploads';
-            $config_bo['allowed_types'] = 'bmp|gif|png|jpg|jpeg|pjpeg';
-            $config_bo['overwrite'] = true;
-            $config_bo['file_name'] = 'logo_backoffice';
-
-            $this->upload->initialize($config_bo);
-
-            $this->upload->do_upload('logo_backoffice');
-            $upload_bo = $this->upload->data();
-
-            $array_config['imagem_logo_backoffice'] = $upload_bo['file_name'];
-
-
-        }
-
-        if(!empty($_FILES['logo_admin']['name'])){
-
-            $config_admin['upload_path'] = 'uploads';
-            $config_admin['allowed_types'] = 'bmp|gif|png|jpg|jpeg|pjpeg';
-            $config_admin['overwrite'] = true;
-            $config_admin['file_name'] = 'logo_admin';
-
-            $this->upload->initialize($config_admin);
-
-            $this->upload->do_upload('logo_admin');
-            $upload_admin = $this->upload->data();
-
-            $array_config['imagem_logo_admin'] = $upload_admin['file_name'];
-
-        }
-
-        if(!empty($_FILES['favicon']['name'])){
-
-            $config_fav['upload_path'] = './uploads/';
-            $config_fav['allowed_types'] = 'gif|png|jpg|jpeg|pjpeg|ico';
-            $config_fav['overwrite'] = true;
-            $config_fav['file_name'] = 'favicon';
-
-            $this->upload->initialize($config_fav);
-
-            $this->upload->do_upload('favicon');
-            $upload_favicon = $this->upload->data();
-
-            $array_config['favicon'] = $upload_favicon['file_name'];
-
-        }
-
-        $update = $this->db->update('website_config', $array_config);
-
-        if($update){
-
-            return '<div class="alert alert-success text-center">Configurações salvas com sucesso!</div>';
-        }
-
-        return '<div class="alert alert-danger text-center">Erro ao salvar configurações.</div>';
-
-
-    }
+    
 
     public function Cron(){
 

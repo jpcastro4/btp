@@ -1,128 +1,126 @@
+<?php //check_manutencao() ?>
 <!DOCTYPE html>
-<!-- 
-Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.6
-Version: 4.5.6
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-Renew Support: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
--->
-<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!-->
 <html lang="en">
-    <!--<![endif]-->
-    <!-- BEGIN HEAD -->
-    <head>
-        <meta charset="utf-8" />
-        <title><?php echo config_site('nome_site');?> | Login</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <meta content="" name="description" />
-        <meta content="" name="author" />
-        <!-- BEGIN GLOBAL MANDATORY STYLES -->
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url();?>assets/admin/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url();?>assets/admin/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url();?>assets/admin/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url();?>assets/admin/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
-        <!-- END GLOBAL MANDATORY STYLES -->
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <link href="<?php echo base_url();?>assets/admin/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url();?>assets/admin/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <!-- END PAGE LEVEL PLUGINS -->
-        <!-- BEGIN THEME GLOBAL STYLES -->
-        <link href="<?php echo base_url();?>assets/admin/assets/global/css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
-        <link href="<?php echo base_url();?>assets/admin/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
-        <!-- END THEME GLOBAL STYLES -->
-        <!-- BEGIN PAGE LEVEL STYLES -->
-        <link href="<?php echo base_url();?>assets/admin/assets/pages/css/login-4.min.css" rel="stylesheet" type="text/css" />
-        <!-- END PAGE LEVEL STYLES -->
-        <!-- BEGIN THEME LAYOUT STYLES -->
-        <!-- END THEME LAYOUT STYLES -->
-        <link rel="shortcut icon" href="favicon.ico" /> </head>
-    <!-- END HEAD -->
+  	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, user-scalable=no">
+	    <meta http-equiv="x-ua-compatible" content="ie=edge">
+	    <!-- <meta name="robots" content="noindex">
+	    <meta name="googlebot" content="noindex"> -->
+	    <title>Área do Corretor - Entrar </title>
+	    <meta name="author" content="João Paulo de Castro Pereira - Difference Publicidade" />
+<!-- 	    <link rel="apple-touch-icon" sizes="57x57" href="<?php echo base_url()?>assets/index/img/favicon/apple-touch-icon-57x57.png">
+	    <link rel="apple-touch-icon" sizes="60x60" href="<?php echo base_url()?>assets/index/img/favicon/apple-touch-icon-60x60.png">
+	    <link rel="apple-touch-icon" sizes="72x72" href="<?php echo base_url()?>assets/index/img/favicon/apple-touch-icon-72x72.png">
+	    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url()?>assets/index/img/favicon/apple-touch-icon-76x76.png">
+	    <link rel="apple-touch-icon" sizes="114x114" href="<?php echo base_url()?>assets/index/img/favicon/apple-touch-icon-114x114.png">
+	    <link rel="apple-touch-icon" sizes="120x120" href="<?php echo base_url()?>assets/index/img/favicon/apple-touch-icon-120x120.png">
+	    <link rel="apple-touch-icon" sizes="144x144" href="<?php echo base_url()?>assets/index/img/favicon/apple-touch-icon-144x144.png">
+	    <link rel="apple-touch-icon" sizes="152x152" href="<?php echo base_url()?>assets/index/img/favicon/apple-touch-icon-152x152.png">
+	    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url()?>assets/index/img/favicon/apple-touch-icon-180x180.png">
+	    <link rel="icon" type="image/png" href="<?php echo base_url()?>assets/index/img/favicon/favicon-32x32.png" sizes="32x32">
+	    <link rel="icon" type="image/png" href="<?php echo base_url()?>assets/index/img/favicon/android-chrome-192x192.png" sizes="192x192">
+	    <link rel="icon" type="image/png" href="<?php echo base_url()?>assets/index/img/favicon/favicon-96x96.png" sizes="96x96">
+	    <link rel="icon" type="image/png" href="<?php echo base_url()?>assets/index/img/favicon/favicon-16x16.png" sizes="16x16">
+	    <link rel="manifest" href="<?php echo base_url()?>assets/index/img/favicon/manifest.json">
+	    <link rel="shortcut icon" href="<?php echo base_url()?>assets/index/img/favicon/favicon.ico"> -->
+	    <meta name="msapplication-TileColor" content="#A80B0B">
+	    <meta name="msapplication-TileImage" content="<?php echo base_url()?>assets/index/img/favicon/mstile-144x144.png">
+	    <meta name="msapplication-config" content="<?php echo base_url()?>assets/index/img/favicon/browserconfig.xml">
+	    <meta name="theme-color" content="#A80B0B">
+	   
+	    <!-- Only needed Bootstrap bits + custom CSS in one file -->
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+	    <script src="https://use.fontawesome.com/7cbf6b3d85.js"></script>
 
-    <body class=" login">
-        <!-- BEGIN LOGO -->
-        <div class="logo">
-            <a href="index.html">
-                <img src="<?php echo base_url();?>assets/admin/assets/pages/img/logo-big.png" alt="" /> </a>
-        </div>
-        <!-- END LOGO -->
-        <!-- BEGIN LOGIN -->
-        <div class="content">
-            <!-- BEGIN LOGIN FORM -->
-            <form class="login-form" action="" method="post">
-                <?php
-                  if(isset($message)) echo $message;
-                ?>
-                <h3 class="form-title">Login to your account</h3>
-                <div class="alert alert-danger display-hide">
-                    <button class="close" data-close="alert"></button>
-                    <span> Enter any username and password. </span>
-                </div>
-                <div class="form-group">
-                    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                    <label class="control-label visible-ie8 visible-ie9">Username</label>
-                    <div class="input-icon">
-                        <i class="fa fa-user"></i>
-                        <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="login" /> </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label visible-ie8 visible-ie9">Password</label>
-                    <div class="input-icon">
-                        <i class="fa fa-lock"></i>
-                        <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="senha" /> </div>
-                </div>
-                <div class="form-actions">
-                    <label class="rememberme mt-checkbox mt-checkbox-outline">
-                        <input type="checkbox" name="remember" value="1" /> Remember me
-                        <span></span>
-                    </label>
-                    <input type="hidden" name="submit" value="submit">
-                    <button type="submit" class="btn green pull-right">Entrar</button>
-                </div>                
-            </form>
-            <!-- END LOGIN FORM -->
-            
-        </div>
-        <!-- END LOGIN -->
-        <!-- BEGIN COPYRIGHT -->
-        <div class="copyright"> 2016 &copy; Rede ADS 50. </div>
-        <!-- END COPYRIGHT -->
-        <!--[if lt IE 9]>
-<script src="<?php echo base_url();?>assets/admin/assets/global/plugins/respond.min.js"></script>
-<script src="<?php echo base_url();?>assets/admin/assets/global/plugins/excanvas.min.js"></script> 
-<![endif]-->
-        <!-- BEGIN CORE PLUGINS -->
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-        <!-- END CORE PLUGINS -->
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>assets/admin/assets/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL PLUGINS -->
-        <!-- BEGIN THEME GLOBAL SCRIPTS -->
-        <script src="<?php echo base_url();?>assets/admin/assets/global/scripts/app.min.js" type="text/javascript"></script>
-        <!-- END THEME GLOBAL SCRIPTS -->
-        <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="<?php echo base_url();?>assets/admin/assets/pages/scripts/login-4.min.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL SCRIPTS -->
-        <!-- BEGIN THEME LAYOUT SCRIPTS -->
-        <!-- END THEME LAYOUT SCRIPTS -->
+	    <script type="text/javascript">var ajaxUrl = '<?php echo base_url('ajax_functions/'); ?>'; </script>
+
+	    <!-- <link rel="stylesheet" href="<?php echo base_url() ?>assets/bo/assets/css/bootbox/sweet-alert.min.css" /> -->
+	    <link rel="stylesheet" href="<?php echo base_url()?>assets/css/theme.css">
+	    
+  	</head>
+
+  	<body class="bg-black-t" style="background-image: url('<?php echo base_url()?>assets/img/administrativo-santa-tereza-construtora.jpg');background-position: center;background-size: cover;">
+
+  	<div class="pt-5">
+	    <div class="contain-card p-4 mx-auto" style="max-width:350px">
+	      	<div class="">
+	         
+	        	<div class="col-12 logo text-center">
+	        		<img width="130" src="http://www.construtorast.com.br/templates/santateresa/images/construtora-santa-teresa.png" >
+	        	</div>
+
+	        	<form action="" method="post" class="row" >
+	          	 
+	          		<div class="w-100 text-center my-2">
+	        			<h1 class="title-1 py-3">Acesso administrativo</h1>
+	        		</div>
+			        <div class="form-group col-12 has-icon-left form-control-email">
+			            <label class="sr-only" for="email">Email</label>
+			            <input type="email" name="usuarioEmail" class="form-control" id="email" placeholder="E-mail" autocomplete="off" >
+			        </div>
+
+		            <div class="form-group col-12 has-icon-left form-control-password">
+		                <label class="sr-only" for="senha">Senha</label>
+		                <input type="password" name="usuarioSenha" class="form-control" id="senha" placeholder="Senha" autocomplete="off">
+		            </div>
+
+		            <div class="col-12">
+	          			<button type="submit" value="submit" name="submit" class="btn btn-theme btn-block">Entrar</button>
+	          		</div>
+		          	<!-- <div class="col-12 text-center mt-3">
+		              	<a href="<?php echo base_url()?>backoffice/esqueci">Recuperar senha</a>
+		          	</div> -->
+	          </form>
+
+	          <hr class="invisible">
+	          	        
+	      	</div>
+	       
+	    </div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    
+
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/lib/noty.css" />
+    <script src="<?php echo base_url()?>assets/lib/noty.js"></script>
+
+    <script type="text/javascript">
+
+        var app = {
+
+            news: function(message,typeNews){
+
+                new Noty({                        
+                            text: message,
+                            layout: 'topRight',
+                            type: typeNews,
+                            timeout : '2000',
+                            theme: 'metroui',
+                            modal: true,
+                            progressBar: false,
+                        }).show();
+            }
+        }
+      
+ 
+
+        $(document).ready(function(){
+
+            <?php if(isset($mensagem) ):  ?>
+            	app.news('<?php echo $mensagem;?>','success')
+            <?php endif;?>
+
+            <?php if(isset($mensagem_erro)):  ?>
+            	app.news('<?php echo $mensagem_erro;?>','error')
+            <?php endif;?>
+        })
+
+    </script>
+
     </body>
-
 </html>

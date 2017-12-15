@@ -1,540 +1,152 @@
-<?php check_session_admin(); ?>
+<?php 
+
+  //check_adm_session();
+?>
 
 <!DOCTYPE html>
-<!-- 
-Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.6
-Version: 4.5.6
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-Renew Support: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
--->
-<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!-->
 <html lang="en">
-    <!--<![endif]-->
-    <!-- BEGIN HEAD -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>TrackSeg - <?php echo $titulo; ?></title>
+<!--     <meta name="description" content="A free HTML template and UI Kit built on Bootstrap" />
+    <meta name="keywords" content="free html template, bootstrap, ui kit, sass" />
+    <meta name="author" content="Peter Finlan and Taty Grassini Codrops" />
+    <link rel="apple-touch-icon" sizes="57x57" href="<?php echo base_url()?>assets/index/img/favicon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="<?php echo base_url()?>assets/index/img/favicon/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="<?php echo base_url()?>assets/index/img/favicon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url()?>assets/index/img/favicon/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="<?php echo base_url()?>assets/index/img/favicon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="<?php echo base_url()?>assets/index/img/favicon/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="<?php echo base_url()?>assets/index/img/favicon/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="<?php echo base_url()?>assets/index/img/favicon/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url()?>assets/index/img/favicon/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="<?php echo base_url()?>assets/index/img/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="<?php echo base_url()?>assets/index/img/favicon/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="<?php echo base_url()?>assets/index/img/favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="<?php echo base_url()?>assets/index/img/favicon/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="<?php echo base_url()?>assets/index/img/favicon/manifest.json">
+    <link rel="shortcut icon" href="<?php echo base_url()?>assets/index/img/favicon/favicon.ico"> -->
+    <meta name="msapplication-TileColor" content="#663fb5">
+    <meta name="msapplication-TileImage" content="<?php echo base_url()?>assets/index/img/favicon/mstile-144x144.png">
+    <meta name="msapplication-config" content="<?php echo base_url()?>assets/index/img/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#663fb5">
+    <!-- Only needed Bootstrap bits + custom CSS in one file -->
 
-    <head>
-        <meta charset="utf-8" />
-        <title>Metronic | Dashboard</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <meta content="" name="description" />
-        <meta content="" name="author" />
-        <!-- BEGIN GLOBAL MANDATORY STYLES -->
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url();?>assets/admin/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url();?>assets/admin/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url();?>assets/admin/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url();?>assets/admin/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
-        <!-- END GLOBAL MANDATORY STYLES -->
-        <!-- BEGIN THEME GLOBAL STYLES -->
-        <link href="<?php echo base_url();?>assets/admin/assets/global/css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
-        <link href="<?php echo base_url();?>assets/admin/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
-        <!-- END THEME GLOBAL STYLES -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+    <script src="https://use.fontawesome.com/7cbf6b3d85.js"></script>
 
-         <?php if(!empty($pg_home) OR !empty($pg_usuario) OR !empty($pg_editausuario)):?>
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <link href="<?php echo base_url();?>assets/admin/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url();?>assets/admin/assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url();?>assets/admin/assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url();?>assets/admin/assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
-        <!-- END PAGE LEVEL PLUGINS -->
+    <script type="text/javascript">var ajaxUrl = '<?php echo base_url('ajax_functions/'); ?>'; </script>
 
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <link href="<?php echo base_url();?>assets/admin/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
-        <!-- END PAGE LEVEL PLUGINS -->
-        <!-- BEGIN PAGE LEVEL STYLES -->
-        <link href="<?php echo base_url();?>assets/admin/assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
-        <!-- END PAGE LEVEL STYLES -->
-        <link href="<?php echo base_url();?>assets/admin/assets/global/css/rede.css" rel="stylesheet" type="text/css" />
-
-        <?php endif;?>
-
-        <?php if(!empty($pg_usuarios) ):?>
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <link href="<?php echo base_url();?>assets/admin/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url();?>assets/admin/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
-
-        <?php endif;?>
-
-        <?php if(!empty($pg_emails) ):?>
+    <!-- <link rel="stylesheet" href="<?php echo base_url() ?>assets/bo/assets/css/bootbox/sweet-alert.min.css" /> -->
+    <link rel="stylesheet" href="<?php echo base_url()?>assets/css/theme.css">
+    <link rel="stylesheet" href="<?php echo base_url()?>assets/css/animate.css">  
+    <!-- <link rel="stylesheet" href="<?php echo base_url()?>assets/rede.css"> -->
 
 
-        <link href="<?php echo base_url();?>assets/admin/assets/email/ui/trumbowyg.min.css" rel="stylesheet" type="text/css" />
- 
-        <?php endif;?>
+  </head>
 
-        <!-- BEGIN THEME LAYOUT STYLES -->
-        <link href="<?php echo base_url();?>assets/admin/assets/layouts/layout3/css/layout.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url();?>assets/admin/assets/layouts/layout3/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
-        <link href="<?php echo base_url();?>assets/admin/assets/layouts/layout3/css/custom.min.css" rel="stylesheet" type="text/css" />
-        <!-- END THEME LAYOUT STYLES -->
-
-        <link rel="shortcut icon" href="favicon.ico" />
-    </head>
-    <!-- END HEAD -->
-
-    <body class="page-container-bg-solid">
-
-
-        <!-- BEGIN HEADER -->
-        <div class="page-header">
-            <!-- BEGIN HEADER TOP -->
-            <div class="page-header-top">
-                <div class="container">
-                    <!-- BEGIN LOGO -->
-                    <div class="page-logo">
-                        <a href="index.html">
-                            <img width="150" src="<?php echo base_url();?>assets/ads-logo-horizontal.png" alt="logo" class="logo-default">
-                        </a>
-                    </div>
-                    <!-- END LOGO -->
-                    <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-                    <a href="javascript:;" class="menu-toggler"></a>
-                    <!-- END RESPONSIVE MENU TOGGLER -->
-                    <!-- BEGIN TOP NAVIGATION MENU -->
-                    <div class="top-menu">
-                        <ul class="nav navbar-nav pull-right">
-                            <!-- BEGIN NOTIFICATION DROPDOWN -->
-                            <li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
-                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <i class="icon-bell"></i>
-                                    <span class="badge badge-default">7</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="external">
-                                        <h3>You have
-                                            <strong>12 pending</strong> tasks</h3>
-                                        <a href="app_todo.html">view all</a>
-                                    </li>
-                                    <li>
-                                        <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="time">just now</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-success">
-                                                            <i class="fa fa-plus"></i>
-                                                        </span> New user registered. </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="time">3 mins</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-danger">
-                                                            <i class="fa fa-bolt"></i>
-                                                        </span> Server #12 overloaded. </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="time">10 mins</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-warning">
-                                                            <i class="fa fa-bell-o"></i>
-                                                        </span> Server #2 not responding. </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="time">14 hrs</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-info">
-                                                            <i class="fa fa-bullhorn"></i>
-                                                        </span> Application error. </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="time">2 days</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-danger">
-                                                            <i class="fa fa-bolt"></i>
-                                                        </span> Database overloaded 68%. </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="time">3 days</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-danger">
-                                                            <i class="fa fa-bolt"></i>
-                                                        </span> A user IP blocked. </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="time">4 days</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-warning">
-                                                            <i class="fa fa-bell-o"></i>
-                                                        </span> Storage Server #4 not responding dfdfdfd. </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="time">5 days</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-info">
-                                                            <i class="fa fa-bullhorn"></i>
-                                                        </span> System Error. </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="time">9 days</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-danger">
-                                                            <i class="fa fa-bolt"></i>
-                                                        </span> Storage server failed. </span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- END NOTIFICATION DROPDOWN -->
-                            <!-- BEGIN TODO DROPDOWN -->
-                            <li class="dropdown dropdown-extended dropdown-tasks dropdown-dark" id="header_task_bar">
-                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <i class="icon-calendar"></i>
-                                    <span class="badge badge-default">3</span>
-                                </a>
-                                <ul class="dropdown-menu extended tasks">
-                                    <li class="external">
-                                        <h3>You have
-                                            <strong>12 pending</strong> tasks</h3>
-                                        <a href="app_todo_2.html">view all</a>
-                                    </li>
-                                    <li>
-                                        <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="task">
-                                                        <span class="desc">New release v1.2 </span>
-                                                        <span class="percent">30%</span>
-                                                    </span>
-                                                    <span class="progress">
-                                                        <span style="width: 40%;" class="progress-bar progress-bar-success" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">40% Complete</span>
-                                                        </span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="task">
-                                                        <span class="desc">Application deployment</span>
-                                                        <span class="percent">65%</span>
-                                                    </span>
-                                                    <span class="progress">
-                                                        <span style="width: 65%;" class="progress-bar progress-bar-danger" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">65% Complete</span>
-                                                        </span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="task">
-                                                        <span class="desc">Mobile app release</span>
-                                                        <span class="percent">98%</span>
-                                                    </span>
-                                                    <span class="progress">
-                                                        <span style="width: 98%;" class="progress-bar progress-bar-success" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">98% Complete</span>
-                                                        </span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="task">
-                                                        <span class="desc">Database migration</span>
-                                                        <span class="percent">10%</span>
-                                                    </span>
-                                                    <span class="progress">
-                                                        <span style="width: 10%;" class="progress-bar progress-bar-warning" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">10% Complete</span>
-                                                        </span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="task">
-                                                        <span class="desc">Web server upgrade</span>
-                                                        <span class="percent">58%</span>
-                                                    </span>
-                                                    <span class="progress">
-                                                        <span style="width: 58%;" class="progress-bar progress-bar-info" aria-valuenow="58" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">58% Complete</span>
-                                                        </span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="task">
-                                                        <span class="desc">Mobile development</span>
-                                                        <span class="percent">85%</span>
-                                                    </span>
-                                                    <span class="progress">
-                                                        <span style="width: 85%;" class="progress-bar progress-bar-success" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">85% Complete</span>
-                                                        </span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="task">
-                                                        <span class="desc">New UI release</span>
-                                                        <span class="percent">38%</span>
-                                                    </span>
-                                                    <span class="progress progress-striped">
-                                                        <span style="width: 38%;" class="progress-bar progress-bar-important" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100">
-                                                            <span class="sr-only">38% Complete</span>
-                                                        </span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- END TODO DROPDOWN -->
-                            <li class="droddown dropdown-separator">
-                                <span class="separator"></span>
-                            </li>
-                            <!-- BEGIN INBOX DROPDOWN -->
-                            <li class="dropdown dropdown-extended dropdown-inbox dropdown-dark" id="header_inbox_bar">
-                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <span class="circle">3</span>
-                                    <span class="corner"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="external">
-                                        <h3>You have
-                                            <strong>7 New</strong> Messages</h3>
-                                        <a href="app_inbox.html">view all</a>
-                                    </li>
-                                    <li>
-                                        <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
-                                            <li>
-                                                <a href="#">
-                                                    <span class="photo">
-                                                        <img src="<?php echo base_url();?>assets/admin/assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
-                                                    <span class="subject">
-                                                        <span class="from"> Lisa Wong </span>
-                                                        <span class="time">Just Now </span>
-                                                    </span>
-                                                    <span class="message"> Vivamus sed auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <span class="photo">
-                                                        <img src="<?php echo base_url();?>assets/admin/assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
-                                                    <span class="subject">
-                                                        <span class="from"> Richard Doe </span>
-                                                        <span class="time">16 mins </span>
-                                                    </span>
-                                                    <span class="message"> Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <span class="photo">
-                                                        <img src="<?php echo base_url();?>assets/admin/assets/layouts/layout3/img/avatar1.jpg" class="img-circle" alt=""> </span>
-                                                    <span class="subject">
-                                                        <span class="from"> Bob Nilson </span>
-                                                        <span class="time">2 hrs </span>
-                                                    </span>
-                                                    <span class="message"> Vivamus sed nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <span class="photo">
-                                                        <img src="<?php echo base_url();?>assets/admin/assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
-                                                    <span class="subject">
-                                                        <span class="from"> Lisa Wong </span>
-                                                        <span class="time">40 mins </span>
-                                                    </span>
-                                                    <span class="message"> Vivamus sed auctor 40% nibh congue nibh... </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <span class="photo">
-                                                        <img src="<?php echo base_url();?>assets/admin/assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
-                                                    <span class="subject">
-                                                        <span class="from"> Richard Doe </span>
-                                                        <span class="time">46 mins </span>
-                                                    </span>
-                                                    <span class="message"> Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- END INBOX DROPDOWN -->
-                            <!-- BEGIN USER LOGIN DROPDOWN -->
-                            <li class="dropdown dropdown-user dropdown-dark">
-                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <img alt="" class="img-circle" src="<?php echo base_url();?>assets/admin/assets/pages/media/profile/avatar.png">
-                                    <span class="username username-hide-mobile">Adm</span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-default">
-                                    <li>
-                                        <a href="page_user_profile_1.html">
-                                            <i class="icon-user"></i> My Profile </a>
-                                    </li>
-                                    <li>
-                                        <a href="app_calendar.html">
-                                            <i class="icon-calendar"></i> My Calendar </a>
-                                    </li>
-                                    <li>
-                                        <a href="app_inbox.html">
-                                            <i class="icon-envelope-open"></i> My Inbox
-                                            <span class="badge badge-danger"> 3 </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="app_todo_2.html">
-                                            <i class="icon-rocket"></i> My Tasks
-                                            <span class="badge badge-success"> 7 </span>
-                                        </a>
-                                    </li>
-                                    <li class="divider"> </li>
-                                    <li>
-                                        <a href="page_user_lock_1.html">
-                                            <i class="icon-lock"></i> Lock Screen </a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo base_url(); ?>boadmin/logout">
-                                            <i class="icon-key"></i> Log Out </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- END USER LOGIN DROPDOWN -->
-                            <!-- BEGIN QUICK SIDEBAR TOGGLER -->
-                            <li class="dropdown dropdown-extended quick-sidebar-toggler">
-                                <span class="sr-only">Toggle Quick Sidebar</span>
-                                <i class="icon-logout"></i>
-                            </li>
-                            <!-- END QUICK SIDEBAR TOGGLER -->
-                        </ul>
-                    </div>
-                    <!-- END TOP NAVIGATION MENU -->
+  <body class="bg-faded bg-grey-md1">
+  <div class="loading ">
+        <div class="sk-fading-circle">
+        <div class="sk-circle1 sk-circle"></div>
+        <div class="sk-circle2 sk-circle"></div>
+        <div class="sk-circle3 sk-circle"></div>
+        <div class="sk-circle4 sk-circle"></div>
+        <div class="sk-circle5 sk-circle"></div>
+        <div class="sk-circle6 sk-circle"></div>
+        <div class="sk-circle7 sk-circle"></div>
+        <div class="sk-circle8 sk-circle"></div>
+        <div class="sk-circle9 sk-circle"></div>
+        <div class="sk-circle10 sk-circle"></div>
+        <div class="sk-circle11 sk-circle"></div>
+        <div class="sk-circle12 sk-circle"></div>
+</div>
+  </div>
+   <!--  <div class="container-fluid hidden-md-up">
+       <div class="row">
+            <div class="col-12 col-sm-12 col-md-2 bg-black-md ">
+              <div class="row head header-princ-menu pd-10 text-center">
+                    <div class="title title-1 col-12 ">Dashboard</div>
+                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#menuprincipal" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars font-branco"></span></button>
                 </div>
             </div>
-            <!-- END HEADER TOP -->
-            <!-- BEGIN HEADER MENU -->
-            <div class="page-header-menu">
-                <div class="container">
-                    <!-- BEGIN HEADER SEARCH BOX -->
-                    <form class="search-form" action="#" method="post">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Busca usuário" name="search">
-                            <span class="input-group-btn">
-                                <a href="javascript:;" class="btn submit">
-                                    <i class="icon-magnifier"></i>
-                                </a>
-                            </span>
-                        </div>
-                    </form>
-                    <!-- END HEADER SEARCH BOX -->
-                    <!-- BEGIN MEGA MENU -->
-                    <!-- DOC: Apply "hor-menu-light" class after the "hor-menu" class below to have a horizontal menu with white background -->
-                    <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
-                    <div class="hor-menu  ">
-                        <ul class="nav navbar-nav">
-                            <li class="menu-dropdown classic-menu-dropdown <?php if(isset($pg_home)){ echo 'active';}?>">
-                                <a href="<?php echo base_url(); ?>boadmin/"><i class="icon-home"></i>  Início
-                                    <span class="arrow"></span>
-                                </a>
-                               <!--  <ul class="dropdown-menu pull-left">
-                                    <li class=" active">
-                                        <a href="index.html" class="nav-link  active">
-                                            <i class="icon-bar-chart"></i> Default Dashboard
-                                            <span class="badge badge-success">1</span>
-                                        </a>
-                                    </li>
-                                    <li class=" ">
-                                        <a href="dashboard_2.html" class="nav-link  ">
-                                            <i class="icon-bulb"></i> Dashboard 2 </a>
-                                    </li>
-                                    <li class=" ">
-                                        <a href="dashboard_3.html" class="nav-link  ">
-                                            <i class="icon-graph"></i> Dashboard 3
-                                            <span class="badge badge-danger">3</span>
-                                        </a>
-                                    </li>
-                                </ul> -->
-                            </li>
-
-                            <li class="menu-dropdown mega-menu-dropdown  <?php if(isset($pg_afiliados)){ echo 'active';}?>">
-                                <a href="<?php echo base_url(); ?>boadmin/afiliados"><i class="icon-user"></i>  Afiliados
-                                    <span class="arrow"></span>
-                                </a>
-                                
-                            </li>
-
-                            <li class="menu-dropdown mega-menu-dropdown  <?php if(isset($pg_usuarios)){ echo 'active';}?>">
-                                <a href="<?php echo base_url(); ?>boadmin/usuarios"><i class="icon-user"></i>  Usuários
-                                    <span class="arrow"></span>
-                                </a>
-                                
-                            </li>
-
-                            <li class="menu-dropdown classic-menu-dropdown  <?php if(isset($pg_relacionamento)){ echo 'active';}?>">
-                                <a href="#"><i class="icon-user"></i>  Relacionamento
-                                    <span class="arrow"></span>
-                                </a>
-                                 <ul class="dropdown-menu pull-left">
-                                    <li class=" active">
-                                        <a href="<?php echo base_url(); ?>boadmin/emails" class="nav-link  <?php if(isset($pg_emails)){ echo 'active';}?>">
-                                            <i class="icon-bar-chart"></i> E-mails
-                                            <!-- <span class="badge badge-success">1</span> -->
-                                        </a>
-                                    </li>
-                                    <!-- <li class=" ">
-                                        <a href="dashboard_2.html" class="nav-link  ">
-                                            <i class="icon-bulb"></i> Dashboard 2 </a>
-                                    </li>
-                                    <li class=" ">
-                                        <a href="dashboard_3.html" class="nav-link  ">
-                                            <i class="icon-graph"></i> Dashboard 3
-                                            <span class="badge badge-danger">3</span>
-                                        </a>
-                                    </li> -->
-                                </ul>
-                                
-                            </li>s
-
-                            <li class="menu-dropdown mega-menu-dropdown  <?php if(isset($pg_configuracoes)){ echo 'active';}?>">
-                                <a href="<?php echo base_url(); ?>boadmin/configuracoes"><i class="icon-settings"></i>  Configurações
-                                    <span class="arrow"></span>
-                                </a>
-                                
-                            </li>        
-                        </ul>
-                    </div>
-                    <!-- END MEGA MENU -->
+            <div class="col-4 bg-grey-md1">
+                <div class="row head header-sec-menu pd-10">
+                    <div class="title title-2 w-100 text-center mb-1"> <?php //echo $pg_icone ?>  <span class="pull-right"> <?php echo $titulo_1 ?>  </span></div>
                 </div>
             </div>
-            <!-- END HEADER MENU -->
+            <div class="col-8 bg-grey-md1 ">
+                <a href=""  data-toggle="collapse" data-target="#menu-secundario" >
+                <div class="row head header-contain pd-10">
+                    <div class="col-12">
+                        <h1 class="title title-2 text-center"> Menu </h1>
+                    </div>
+                </div>
+                </a>
+            </div>
         </div>
-        <!-- END HEADER -->
+    </div> -->
+
+  <!-- INICIO TEMPLATE  -->
+  <div class="container-fluid sticky-top">
+    <div class="row">
+
+    <!-- MENU PRINCIPAL -->
+        <div class="col-12 col-md-3 col-lg-2 bg-black-md " >
+            <div class="row head header-princ-menu pd-20 text-center ">
+                <button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#menuprincipal" aria-expanded="false" aria-controls="menuprincipal" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars font-branco"></span></button>
+                <div class="title title-1 col-12">Dashboard</div>
+                
+            </div>
+            <div class="row hidden-md-up <?php if($this->agent->is_mobile() ): echo ''; endif;?> collapse navbar-collapse" id="menuprincipal">
+                <hr class="separador-preto w-100 clearfix">
+                <div class="col-12 py-1 px-4 ">
+                    <ul class="menu-vert menu-prim">
+                        <li><a class="<?php if( !empty($pg_inicio) ){ echo 'ativo '; } ?>"  href="<?php echo base_url()?>administrativo"><i class="fa fa-home"></i> Início </a></li>
+                        <li><a class="<?php if( !empty($pg_administrativo) ){ echo 'ativo '; } ?>"  href="<?php echo base_url()?>administrativo/corretores"><i class="fa fa-building"></i> Corretores </a></li>
+                        <li><a class="<?php if( !empty($pg_pesquisas) ){ echo 'ativo '; } ?>"  href="<?php echo base_url()?>administrativo/sair"><i class="fa fa-line-chart"></i> Sair </a></li>
+                    </ul>
+                </div>
+                
+                <!--<hr class="separador-preto w-100 clearfix">
+             
+                 <div class="col-12 py-1 px-4">
+                    <ul class="menu-vert menu-prim">
+                        <li><a href="<?php echo base_url() ?>dashboard/configuracoes"><i class="fa fa-cogs"></i> Configurações</a></li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+
+
+        <div class="col-12 col-md-3 col-lg-2 bg-grey-md2 <?php if($this->agent->is_mobile() ): echo 'collapse'; endif;?>" id="menu-secundario">
+            <div class="row align-items-center head header-sec-menu pd-20 hidden-sm-down">
+                <div class="title title-2 col-12 "><i class="fa fa-line-chart fa-align-right"></i> <span class="pull-right"> <?php echo $pg_titulo_1 ?>  </span></div>
+            </div>
+        </div>
+        <?php if(!$this->agent->is_mobile() ): ?>
+        <div class="col-12 col-md-8  bg-grey-md1 ">
+            <div class="row align-items-center head text-right header-contain pd-20">
+                <div class="col-12">
+                <nav class=" ">
+                    <ul class="navbar-menu-screen text-right clearfix">
+                        <li class=""><a href="<?php echo base_url()?>admin" class="font-branco ">  Início  </a></li>
+                        <!-- <li class=""><a href="<?php echo base_url()?>admin" class="font-branco "> Empreendimentos  </a> </li> -->
+                        <li class=""><a href="<?php echo base_url()?>admin/corretores" class="font-branco "> Corretores  </a> </li>
+                        <li class=""><a href="<?php echo base_url()?>admin/sair" class="font-branco "> Sair  </a> </li>
+                    </ul>
+                </nav>
+                    
+                </div>
+            </div>
+        </div>
+        <?php endif;?>
+    </div>
+</div>
+
+
+<div class="container-fluid ">
+    <div class="row ">

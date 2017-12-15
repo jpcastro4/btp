@@ -7,357 +7,177 @@ class Usuario_model extends CI_Model{
 
     public function NovoUsuario(){
 
-        $indicadorLogin = $this->native_session->get('indicador');
+        if($this->native_session->get('indicador')){
 
-        $this->db->where('login', $indicadorLogin);
-        $indicador = $this->db->get('usuarios')->row();
+            $indicadorLogin = $this->native_session->get('indicador');
+        }else{
 
-        if( $indicador->block == 1){
+            $indicadorLogin = 'bitprimeoficial';
+        }
+        
+        $this->db->where('usuarioLogin', $indicadorLogin);
+        $indicador = $this->db->get('usuarios');
+
+        if($indicador->num_rows() > 0){
+
+            if( $indicador->row()->usuarioBlock == 1){
            
-            $this->native_session->set_flashdata('mensagem',  '<div class="alert alert-danger text-center">Seu indicador está bloqueado por irregularidades.</div>');
-            return;
-
-        } 
-
-        if( $indicador->lider == 0){ //SE ELE NAO É LIDER
-            
-            if( $indicador->ciclo == 0){
-                $this->native_session->set_flashdata('mensagem',  '<div class="alert alert-danger text-center">O upline ainda não está ativo. Tente mais tarde.</div>');
+                //$this->native_session->set_flashdata('message_error', '<div class="alert alert-danger text-center">Seu indicador está bloqueado por irregularidades.</div>');
+                echo json_encode( array('result'=>'error','message'=>'Seu indicador está bloqueado.') );
+                return;
             }
 
+            $indicadorID = $indicador->row()->usuarioID;
+        }else{
 
-            if($this->painel_model->StatusIndicado($indicador->id) >= 3 ){
+            $indicadorID = null; //especificamente para o primeiro cadastro
+        }
 
-                $this->native_session->set_flashdata('mensagem',  '<div class="alert alert-danger text-center">Seu indicador já tem 3 cadastrados ou a rede dele não tem base ativa. Faça contato e peça um lugar.</div>');
-            }
-        }   
+        $usuarioEmail = $this->input->post('usuarioEmail');
+        $usuarioSenha = $this->input->post('usuarioSenha');
+        $usuarioLogin = $this->input->post('usuarioLogin');
 
-        $email = $this->input->post('email');
-        $senha = $this->input->post('senha');
+        $usuarioNome = $this->input->post('usuarioNome');
+        $usuarioSobrenome = $this->input->post('usuarioSobrenome'); 
+        $usuarioCpf =  preg_replace("/\.|\-/", "", $this->input->post('usuarioCpf') ); 
 
-        $login = $this->input->post('login');
-
-        $nome = $this->input->post('nome');
-        $sobrenome = $this->input->post('sobrenome'); 
-        $cpf =  preg_replace("/\.|\-/", "", $this->input->post('cpf') ); 
-        $nascimento = $this->input->post('nascimento');
-        $celular = preg_replace("/\(|\)|\-/", "", $this->input->post('celular'));
-        $ddd = substr($celular, 0, 2);
-        $tel = substr($celular, 2, 10);
+        //$nascimento = $this->input->post('nascimento');
+        // $celular = preg_replace("/\(|\)|\-/", "", $this->input->post('celular'));
+        // $ddd = substr($celular, 0, 2);
+        // $tel = substr($celular, 2, 10);
         
+        $usuarioTelefone = preg_replace("/\(|\)|\-/", "", $this->input->post('usuarioTelefone'));
         
-        //USUARIOS BLOQUEADOS POR ALGUM MOTIVO NÃO CONSEGUIRÃO SE CADASTRAR
-        $this->db->where('ddd', $ddd);
-        $this->db->where('celular', $tel);
-        $this->db->where('block', 1);
-        $user_email = $this->db->get('usuarios');
-        
-        $this->db->where('email', $email);
-        $this->db->where('block', 1);
-        $user_email = $this->db->get('usuarios');
+        //LOGIN JA EXISTENTE
+        $this->db->where('usuarioLogin', $usuarioLogin);
+        $user_usuarioLogin = $this->db->get('usuarios');
 
-        $this->db->where('cpf', $cpf);
-        $this->db->where('block', 1);
-        $user_cpf = $this->db->get('usuarios');
+        if($user_usuarioLogin->num_rows() > 0){
 
-        if( $user_cpf->num_rows() > 0){
-
-            $this->native_session->set_flashdata('mensagem',  '<div class="alert alert-danger text-center">Você já está cadastrado na plataforma. Entre em contato com suporte para ser reposicionado.</div>');
+            //$this->native_session->set_flashdata('mensagem',  '<div class="alert alert-danger text-center">Login já existe. Escolha outro.</div>');
+            echo json_encode( array('result'=>'error','message'=>'NickName já existe. Escolha outro.') );
             return;
         }
 
-        if($user_email->num_rows() > 0){
+        //USUARIOS QUE JA EXISTEM
+        $this->db->where('usuarioCpf', $usuarioCpf);
+        $this->db->or_where('usuarioTelefone', $usuarioTelefone);
+        $this->db->or_where('usuarioEmail', $usuarioEmail);
+        $usuarioExiste = $this->db->get('usuarios');
 
-            $this->native_session->set_flashdata('mensagem',  '<div class="alert alert-danger text-center">Você já está cadastrado na plataforma. Entre em contato com suporte para ser reposicionado.</div>');
+        if( $usuarioExiste->num_rows() > 0){
+
+            $this->native_session->set_flashdata('mensagem',  '<div class="alert alert-danger text-center">Você já está cadastrado na plataforma.</div>');
             return;
         }
 
-        //LOGIN JA EXISTE
-        $this->db->where('login', $login);
-        $user_login = $this->db->get('usuarios');
-
-        if($user_login->num_rows() > 0){
-
-            $this->native_session->set_flashdata('mensagem',  '<div class="alert alert-danger text-center">Login já existe. Escolha outro.</div>');
-            return;
-
-        }
-
-        // $this->db->where('email', $email);
-        // $user_conta = $this->db->get('usuarios_contas');
-
-        // if($user_conta->num_rows() > 0){
-
-        //     $this->native_session->set_flashdata('mensagem',  '<div class="alert alert-danger text-center">Parece que já existe um cadastro que pertence a você. Tente fazer o login na sua conta. Se você está tentnado uma reentrada por aqui, dentro do seu BO existe uma opçõa por onde devem ser feitas as reentradas.</div>');
-        //     return;
-
-        // }
-
-
-        // $array_conta = array(
-        //     'email'=>$email,
-        //     'senha'=>md5($senha),
-        //     'data_cadastro'=>date('Y-m-d H:i:s'),
-        // );
-
-        // $conta = $this->db->insert('usuarios_contas', $array_conta);
-
-        // if(!$conta){
-
-        //     $this->native_session->set_flashdata('mensagem', '<div class="alert alert-danger text-center">Cadastro falhou. Volte mais tarde.</div>');
-        //     return;
-
-        // }
-
-        // $id_conta = $this->db->insert_id();
-
-
-        $cronometro = strtotime(date('Y-m-d H:i:s'))+86400;
 
         $array_cadastro = array(
-            'nome'=>$nome,
-            'sobrenome'=>$sobrenome,
-            'email'=>$email,
-            'cpf'=>$cpf,
-            'nascimento'=>converter_data($nascimento),
-            'ddd'=> $ddd,
-            'celular'=>$tel,
-            'login'=>$login,
-            'senha'=>md5($senha),
-            'block'=>0,
-            'ciclo'=>0,
-            'data_cadastro'=>date('Y-m-d H:i:s'),
-            'cronometro'=>date('Y-m-d H:i:s', $cronometro)
+            'usuarioNome'=>$usuarioNome,
+            'usuarioSobrenome'=>$usuarioSobrenome,
+            'usuarioEmail'=>$usuarioEmail,
+            'usuarioCpf'=>$usuarioCpf,
+            //'nascimento'=>converter_data($nascimento),
+            //'ddd'=> $ddd,
+            'usuarioTelefone'=>$usuarioTelefone,
+            'usuarioLogin'=>$usuarioLogin,
+            'usuarioSenha'=>md5($usuarioSenha),
+            'usuarioBlock'=>0,
+            'usuarioStatus'=>0,
+            'usuarioDataCadastro'=>date('Y-m-d H:i:s'),
+            'usuarioIndicador'=>$indicadorID,
         );
 
         $cadastra = $this->db->insert('usuarios', $array_cadastro);
 
-        $id_novo_usuario = $this->db->insert_id();
+        if($cadastra){
 
-        $array_usuarios_nivel = array(
-            'id_usuario'=>$id_novo_usuario,
-            'nivel'=>1,
-            'data_entrada'=>date('Y-m-d H:m:s'),
-            'ultima_atvidade'=>date('Y-m-d H:m:s'),
-        );
-        $this->db->insert('usuarios_nivel', $array_usuarios_nivel);
-
-        /* VINCULAÇÃO COM PATROCINADOR */
-        //SE NAO TEM PATROCINADOR AUTOMATICAMENTE ENTRA PRA NUBIA
-        if($this->native_session->get('indicador')){
-
-            $indicador = $this->native_session->get('indicador');
-            $this->db->where('login', $indicador);
-            $user_login_indicador = $this->db->get('usuarios');
-
+            $id_novo_usuario = $this->db->insert_id();
+            $this->native_session->set('usuario_id', $id_novo_usuario);
 
         }else{
 
-            $indicador = 'redeads';
-            $this->db->where('login', $indicador);
-            $user_login_indicador = $this->db->get('usuarios');
-        }
-       
-
-        if($user_login_indicador->num_rows() > 0){//SE O USUARIO EXISTE
-
-            $row_indicador = $user_login_indicador->row();
-
-            $id_indicador = $row_indicador->id;
-
-            $array_indicador = array(
-                    'id_usuario'=>$id_novo_usuario,
-                    'id_indicador'=>$id_indicador
-            );
-
-            $this->db->insert('indicadores', $array_indicador);
+            echo json_encode( array('result'=>'error','message'=>'Cadastrou falhou. Tente novamente') );
+            return;
         }
 
-        /* FIM DO PATROCINADOR */
+        //REDIRECIONA PARA A TELA DE PAGAMENTO
 
-        if($cadastra){
+        $pacoteID = $this->native_session->get('pacoteID');
+        redirect('backoffice/carrinho/'.$pacoteID);
+
+          
+
+        if($pagamento){
             $infoCadastrado = $this->painel_model->infoUser($id_novo_usuario);
             $nomeCadastrado = $infoCadastrado->nome;
             $this->painel_model->InserirExtrato($id_indicador, 'indicou o amigo '.$nomeCadastrado.' #'.$id_novo_usuario , 'novoinidcado');
 
-            $this->native_session->set_flashdata('mensagem','<div class="alert alert-success text-center" >Usuário cadastrado com sucesso <a href="'. base_url('').'"><strong> Clique aqui e faça o login</strong></a></div>');
-
-            redirect('painel/login');
-            
+            $this->native_session->set_flashdata('mensagem','<div class="alert alert-success text-center" >Usuário cadastrado com sucesso <a href="'. base_url('').'"><strong> Clique aqui e faça o login</strong></a></div>');            
         }
-
-        $this->native_session->set_flashdata('mensagem','<div class="alert alert-danger text-center">Não foi possível completar seu cadastro.</div>');
-
-        return;
         
     }
 
-    public function NovoUsuarioReentrada(){
 
-        $indicadorLogin = $this->native_session->get('indicador');
-
-        $this->db->where('login', $indicadorLogin);
-        $indicador = $this->db->get('usuarios')->row();
-
-        if( $indicador->block == 1){
-           
-            return '<div class="alert alert-danger text-center">O seu indicador está bloqueado por irregularidades.</div>';
-
-        } 
-
-        if( $indicador->lider == 0){
-            
-            if( $indicador->ciclo == 0){
-                return '<div class="alert alert-danger text-center">O upline ainda não está ativo. Tente mais tarde.</div>';
-            }
-
-
-            if($this->painel_model->StatusIndicado($indicador->id) >= 3 ){
-
-                return '<div class="alert alert-danger text-center">Seu indicador já tem 3 cadastrados ou a rede dele não tem base ativa. Faça contato e peça um lugar.</div>';
-            }
-        }   
-
-        $conta_id = $this->native_session->get('conta_id');
-
-        //CONTA MASTER BLOQUEADA NAO CONSEGUIRA CADASTRAR
-        $this->db->where('id', $conta_id);
-        $this->db->where('block', 1);
-        $user_conta = $this->db->get('usuarios_contas');
-
-        if( $user_conta->num_rows() > 0){
-
-            return '<div class="alert alert-danger text-center">Sua conta está bloqueada. Entre em contato com o suporte..</div>';
-        }
-
-        //LISTA OS CAMPOS A SEREM SALVOS
-        $nome = $this->input->post('nome');
-        $sobrenome = $this->input->post('sobrenome'); 
-        $email = $this->input->post('email');
-        $cpf =  preg_replace("/\.|\-/", "", $this->input->post('cpf') ); 
-        $nascimento = $this->input->post('nascimento');
-        $celular = preg_replace("/\(|\)|\-/", "", $this->input->post('celular'));
-        $ddd = substr($celular, 0, 2);
-        $tel = substr($celular, 2, 10);
-        $login = $this->input->post('login');
-        $senha = $this->input->post('senha');
-
-
-        //USUARIOS BLOQUEADOS POR ALGUM MOTIVO NÃO CONSEGUIRÃO SE CADASTRAR
-        $this->db->where('ddd', $ddd);
-        $this->db->where('celular', $tel);
-        $this->db->where('block', 1);
-        $user_email = $this->db->get('usuarios');
+    public function processaPagamento(){
         
-        $this->db->where('email', $email);
-        $this->db->where('block', 1);
-        $user_email = $this->db->get('usuarios');
+        $post = $this->input->post();
 
-        $this->db->where('cpf', $cpf);
-        $this->db->where('block', 1);
-        $user_cpf = $this->db->get('usuarios');
+        $pacoteID = $post['pacoteID'];
+        $usuarioID = $post['usuarioID'];
 
-        if( $user_cpf->num_rows() > 0){
+        //consulta se há algum pedido aguardando em nome do usuario
+        $this->db->where('usuarioID',$usuarioID);
+        $this->db->where('pedidoStatus',1);
+        $pedidoAberto = $this->db->get('pedidos');
 
-            return '<div class="alert alert-danger text-center">Você já está cadastrado na plataforma. Entre em contato com suporte para ser reposicionado.</div>';
+        if($pedidoAberto->num_rows() > 0 ){
+
+            echo json_encode(array('return'=>FALSE,'message'=>'Existe pedido de pacote aguardando aprovação.'));
+            return;
         }
 
-        if($user_email->num_rows() > 0){
 
-            return '<div class="alert alert-danger text-center">Você já está cadastrado na plataforma. Entre em contato com suporte para ser reposicionado.</div>';
-        }
+        $secret = 'ZzsMLGKe162CfA5EcG6j@';
+        $pedidoKey = md5(date('Y-m-d H:i:s').$post['usuarioID'].$secret);
+        $my_xpub = 'xpub6CiWQwtbo6sY7WvakAZj5nperxTTHfRSLL9ZkAqZuUvY2VF8sYk8sqGnnBpkLDxXS7CXxKA7U77SDj7opLkeyGGfXAo1HvLdZ3GJGZMRLXy';
+        $my_api_key = '{YOUR API KEY}';
 
-        //LOGIN JA EXISTE
-        $this->db->where('login', $login);
-        $user_login = $this->db->get('usuarios');
 
-        if($user_login->num_rows() > 0){
-
-            return '<div class="alert alert-danger text-center">Login já existe. Escolha outro.</div>';
-
-        }
-
-        $cronometro = strtotime(date('Y-m-d H:i:s'))+86400;
-
-        $array_cadastro = array(
-            'nome'=>$nome,
-            'sobrenome'=>$sobrenome,
-            'email'=>$email,
-            'cpf'=>$cpf,
-            'nascimento'=>converter_data($nascimento),
-            'ddd'=> $ddd,
-            'celular'=>$tel,
-            'login'=>$login,
-            'senha'=>md5($senha),
-            'block'=>0,
-            'ciclo'=>0,
-            'data_cadastro'=>date('Y-m-d H:i:s'),
-            'cronometro'=>date('Y-m-d H:i:s', $cronometro),
-            'conta_id'=>$conta_id,
+        //abrindo pedido no sistema
+        $pedidoAbrir = array(
+            'pacoteID'=>$pacoteID,
+            'usuarioID'=>$usuarioID,
+            'pedidoStatus'=>1,// 0 para cancelado, 1 para aguardando, 2 para aprovado,
+            'pedidoKey'=>$pedidoKey
         );
-
-        $cadastra = $this->db->insert('usuarios', $array_cadastro);
-
-        $id_novo_usuario = $this->db->insert_id();
-
-        $array_usuarios_nivel = array(
-                'id_usuario'=>$id_novo_usuario,
-                'nivel'=>1,
-                'data_entrada'=>date('Y-m-d H:m:s'),
-                'ultima_atvidade'=>date('Y-m-d H:m:s'),
-            );
-        $this->db->insert('usuarios_nivel', $array_usuarios_nivel);
-
-        /* VINCULAÇÃO COM PATROCINADOR */
-
-        //SE NAO TEM PATROCINADOR AUTOMATICAMENTE ENTRA PRA NUBIA
-        if($this->native_session->get('indicador')){
-
-            $indicador = $this->native_session->get('indicador');
-            $this->db->where('login', $indicador);
-            $user_login_indicador = $this->db->get('usuarios');
-
-
-        }else{
-
-            $indicador = 'liderbrasil';
-            $this->db->where('login', $indicador);
-            $user_login_indicador = $this->db->get('usuarios');
-        }
-       
-
-        if($user_login_indicador->num_rows() > 0){//SE O USUARIO EXISTE
-
-            $row_indicador = $user_login_indicador->row();
-
-            $id_indicador = $row_indicador->id;
-
-            $array_indicador = array(
-                    'id_usuario'=>$id_novo_usuario,
-                    'id_indicador'=>$id_indicador
-            );
-
-            $this->db->insert('indicadores', $array_indicador);
-        }
-
-        /* FIM DO PATROCINADOR */
-
-        if($cadastra){
-            $infoCadastrado = $this->painel_model->infoUser($id_novo_usuario);
-            $nomeCadastrado = $infoCadastrado->nome;
-            $this->painel_model->InserirExtrato( $id_indicador, '#'.$id_indicador.' indicou o amigo '. $nomeCadastrado .' #'.$id_novo_usuario , 'novoindicado');
-
-            $this->native_session->set('user_id',$id_novo_usuario);
-
-            redirect('painel');
-           
-        }
-
-        $this->native_session->set_flashdata('mensagem','<div class="alert alert-danger text-center">Não foi possível completar seu cadastro.</div>');
+        $this->db->insert('pedidos', $pedidoAbrir);
+        $novoPedidoID = $this->db->insert_id();
         
+        //abrindo endereço na blockchain
+        $my_callback_url = site_url().$novoPedidoID.'/'.$pedidoKey;
+
+        // $root_url = 'https://api.blockchain.info/v2/receive';
+        // $parameters = 'xpub=' .$my_xpub. '&callback=' .urlencode($my_callback_url). '&key=' .$my_api_key;
+        // $response = file_get_contents($root_url . '?' . $parameters);
+        //$object = json_decode($response);
+
+        $address = 'ficticio';
+
+        $this->db->where('pedidoID',$novoPedidoID);
+        $this->db->update('pedidos', array('pedidoEndWallet'=>$address) );
+
+        echo json_encode(array('return'=>TRUE,'message'=>'Pedido realizado.'));
+        return;
+
+        //redirect('pagamento/'.$novoPedidoID);
     }
 
+    public function returnPagamento(){
 
+        //retorna o pagamento da blockchain com o resultado e muda status do usuario e ativa o pacote comprado
+    }
+   
     public function RecuperarSenha(){
 
         //$this->load->library('email');

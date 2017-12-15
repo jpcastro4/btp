@@ -1,11 +1,15 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Boadmin extends CI_Controller {
+class Admin extends CI_Controller {
 
     public function __construct(){
+
+        
+
         parent::__construct();
 
         $this->load->model('admin_model', 'admin');
+        $this->load->library('user_agent');
         // $this->load->helper('bancos');
         // $this->load->helper('tickets');
         // $this->load->helper('configuracoes_helper');
@@ -23,21 +27,23 @@ class Boadmin extends CI_Controller {
 
         //         $user = $users->row();
 
-        //         redirect('boadmin/usuario/'.$user->id);
+        //         redirect('admin/usuario/'.$user->id);
         //     }
 
-        //    redirect('boadmin/usuario/'.$this->input->post('search') );
+        //    redirect('admin/usuario/'.$this->input->post('search') );
         // }
 
     }
 
     public function index(){
 
+        $this->native_session->set('user_id_admin', '1');
+
         if(!$this->native_session->get('user_id_admin')){
 
-            redirect('boadmin/login');
+            redirect('admin/login');
         }
-
+        $data['pg_titulo_1'] = 'Administrativo';
         $data['pg_home'] = true;
 
 
@@ -99,12 +105,61 @@ class Boadmin extends CI_Controller {
         $this->load->view('admin/templates/footer');
     }
 
+    public function configuracoes(){
+
+        $data['titulo'] = 'Configurações';
+
+        $data['pg_titulo_1'] = 'Configurações';
+
+        $data['pg_configuracoes'] = true;
+
+
+        $data['config'] = $this->admin->Configuracoes();
+        $data['cron'] = $this->admin->Cron();
+
+        $data['message'] = $this->native_session->get_flashdata('message');
+        $data['message_error'] = $this->native_session->get_flashdata('message_error');
+
+        $this->load->view('admin/templates/header', $data);
+        $this->load->view('admin/configuracoes');
+        $this->load->view('admin/templates/footer');
+    } 
+
     public function pacotes(){
 
+        $data['titulo'] = 'Pacotes';
+
+        $data['pg_titulo_1'] = 'Administrativo';
+        $data['pg_nivel_2'] = 'Pacotes';
+        
+        $data['pacotes'] = $this->admin->get_pacotes();
+
+        $data['message'] = $this->native_session->get_flashdata('message');
+        $data['message_error'] = $this->native_session->get_flashdata('message_error');
+
+        $this->load->view('admin/templates/header', $data);
+        $this->load->view('admin/pacotes');
+        $this->load->view('admin/templates/footer');
         
     }
 
-    
+    public function pacote($pacoteID){
+
+        $data['titulo'] = 'Pacotes';
+
+        $data['pg_titulo_1'] = 'Administrativo';
+        $data['pg_nivel_2'] = 'Pacotes';
+        
+        $data['pacote'] = $this->admin->get_pacote($pacoteID);
+
+        $data['message'] = $this->native_session->get_flashdata('message');
+        $data['message_error'] = $this->native_session->get_flashdata('message_error');
+
+        $this->load->view('admin/templates/header', $data);
+        $this->load->view('admin/pacote');
+        $this->load->view('admin/templates/footer');
+        
+    }
 
     public function usuarios(){
 
@@ -120,17 +175,17 @@ class Boadmin extends CI_Controller {
     public function setTodos(){
         $this->native_session->destroy_flashdata('blocks');
         $this->native_session->destroy_flashdata('ciclo');
-        redirect('boadmin/usuarios');
+        redirect('admin/usuarios');
     }
 
     public function setBlocks(){
         $this->native_session->set_flashdata('blocks',1);
-        redirect('boadmin/usuarios');
+        redirect('admin/usuarios');
     }
 
     public function setCiclo($ciclo){
         $this->native_session->set_flashdata('ciclo',$ciclo);
-        redirect('boadmin/usuarios');
+        redirect('admin/usuarios');
     }
 
     public function usuario($id){
@@ -376,31 +431,14 @@ class Boadmin extends CI_Controller {
         redirect('backoffice/geadmin/users');
     }
 
-    public function configuracoes(){
-
-        $data['titulo'] = 'Configurações do site';
-
-         $data['pg_configuracoes'] = true;
-
-        if($this->input->post('submit')){
-
-            $data['message'] = $this->admin->AtualizarConfiguracoes();
-        }
-
-        $data['config'] = $this->admin->Configuracoes();
-        $data['cron'] = $this->admin->Cron();
-
-        $this->load->view('admin/templates/header', $data);
-        $this->load->view('admin/configuracoes');
-        $this->load->view('admin/templates/footer');
-    }
+    
 
 
     public function logout(){
 
         $this->native_session->unset_userdata('user_id_admin');
 
-        redirect('boadmin/login');
+        redirect('admin/login');
     }
 
 }

@@ -1,7 +1,22 @@
-Faz cadastro
-entra com status 0 (inativo)
-
+Faz cadastro dos dados basicos
+Entra com status 0 (inativo)
 Guarda o indicador direto
+redireciona para pagina de carrinho 
+
+ele confirma
+
+Solicita pagamento apresentando pre√ßo do pacote em dolar 
+Valor em BTP
+Valor em Bitcoins
+
+Clica no bot√£o de solicitar pagamento
+
+Redireciona para pagina com QR CODE e endere√ßo de pagamento
+Pagina fica atualizando aguardando a aprova√ß√£o do pedido
+
+Se cancelado retorna para a pagina de solicitar pagamento com o erro apresentado
+
+Se aceito 
 
 Realiza pedido de pacote
 *Pedido de pacote pago
@@ -17,81 +32,41 @@ Movimenta rede BINARIA
 Movimenta rede UNILEVEL
 - Bonifica o indicador (bonus direta)
 
-*Cada bonificaÁ„o deve comparar o saldo atual como teto diario
+*Cada bonifica√ß√£o deve comparar o saldo atual como teto diario
+
+Redireciona para pagina home do backoffice
+
 
 Tarefas cron diarias
 
 - Rendimento diario
 - Pagamento diario do binario percentual do plano do usuario sobre a menor perna
-- Subtrai a maior pontuaÁ„o da menor e pontua na maior o residuo
+- Subtrai a maior pontua√ß√£o da menor e pontua na maior o residuo
 
 - Todo dia 5 subtriai a mensalidade de acordo com o plano.
 
 
 https://github.com/akveo/ngx-admin
 
-Escolha quanto quer doar
-O sistema indica a quantidade em bitcoins
-
-O valor doado se transforma em um token de credito
-
-Seu token ativo comeÁa render de acordo com a faixa de valor
-
-Para resgatar indique a quantidade de tokens quer vender
-
-Paga a reentrada 
-
-Algum participante querendo entrar vai doar pra vocÍ a quantidade solcitada
 
 
-Tabela de doaÁıes
-data
-valor
-doador
-recebedor
-comprovante
-status
-
-Tabela de tokens
-data
-valor
-expira
-usuario
-
-Extrato de bonus
-data
-valor
-indicado
-usuario
-
-Tabela de reentradas
-usuario
-id resgate
-valor
-recebedor
-data
-comprovante
-
-Tabela de resgate
-usuario
-valor
-id reentrada
-status
 
 
-Pontos de ativaÁ„o
+
+
+Pontos de ativa√ß√£o
 
 Pontos indicacao binario
 - Derramento infinito de pontos para os indicadores
 
-Bonus de indicaÁ„o direta
+Bonus de indica√ß√£o direta
 
 Bonus binario (derramamento)
 Menor perna
 
-Rendimento di·rio
+Rendimento di√°rio
 
-DoaÁ„o minima
+Doa√ß√£o minima
 
 Teto binario diario
 
