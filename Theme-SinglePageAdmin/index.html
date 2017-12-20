@@ -120,7 +120,7 @@
 	      		<dtitle>User Profile</dtitle>
 	      		<hr>
 				<div class="thumbnail">
-					<img src="images/face80x80.jpg" alt="Marcel Newman" class="img-circle">
+					<img width="100" src="images/avatar.png" alt="Marcel Newman" class="img-circle">
 				</div><!-- /thumbnail -->
 				<h1>Marcel Newman</h1>
 				<h3>Madrid, Spain</h3>
@@ -134,10 +134,37 @@
 				</div>
         </div>
 
+        <div class="col-sm-3 col-lg-3">
+
+      <!-- LOCAL TIME BLOCK -->
+      		<div class="half-unit">
+	      		<dtitle>Plano ativo</dtitle>
+	      		<hr>
+		      		<!-- <div class="clockcenter">
+			      		<digiclock>12:45:25</digiclock>
+		      		</div> -->
+		      	<div class="cont">
+					<!-- <p><img src="images/up.png" alt=""> <bold>Up</bold> | 356ms.</p> -->
+					<bold>Basic</bold>
+				</div>
+			</div>
+
+      <!-- SERVER UPTIME -->
+			<div class="half-unit">
+	      		<dtitle>Saldo disponível</dtitle>
+	      		<hr>
+	      		<div class="cont">
+					<!-- <p><img src="images/up.png" alt=""> <bold>Up</bold> | 356ms.</p> -->
+					<bold>$ 1320 BTP</bold>
+				</div>
+			</div>
+
+        </div>
+
       <!-- DONUT CHART BLOCK -->
         <div class="col-sm-3 col-lg-3">
       		<div class="dash-unit">
-		  		<dtitle>Site Bandwidth</dtitle>
+		  		<dtitle>Ganho maximo (binário)</dtitle>
 		  		<hr>
 	        	<div id="load"></div>
 	        	<h2>45%</h2>
@@ -147,41 +174,133 @@
       <!-- DONUT CHART BLOCK -->
         <div class="col-sm-3 col-lg-3">
       		<div class="dash-unit">
-		  		<dtitle>Disk Space</dtitle>
+		  		<dtitle>Ganho máximo (direta)</dtitle>
 		  		<hr>
 	        	<div id="space"></div>
 	        	<h2>65%</h2>
 			</div>
         </div>
         
-        <div class="col-sm-3 col-lg-3">
-
-      <!-- LOCAL TIME BLOCK -->
-      		<div class="half-unit">
-	      		<dtitle>Local Time</dtitle>
-	      		<hr>
-		      		<div class="clockcenter">
-			      		<digiclock>12:45:25</digiclock>
-		      		</div>
-			</div>
-
-      <!-- SERVER UPTIME -->
-			<div class="half-unit">
-	      		<dtitle>Server Uptime</dtitle>
-	      		<hr>
-	      		<div class="cont">
-					<p><img src="images/up.png" alt=""> <bold>Up</bold> | 356ms.</p>
-				</div>
-			</div>
-
-        </div>
+        
       </div><!-- /row -->
       
-      
-	  <!-- SECOND ROW OF BLOCKS -->     
       <div class="row">
+     	
+     	<div class="col-sm-3 col-lg-3">
+
+	  <!-- LIVE VISITORS BLOCK -->     
+      		<div class="half-unit">
+	      		<dtitle>Pontos Binário (Esquerda)</dtitle>
+	      		<hr>
+	      		<div class="cont">
+      			<p><bold>388</bold></p>
+      			<!-- <p><img src="images/up-small.png" alt=""> 412 Max. | <img src="images/down-small.png" alt=""> 89 Min.</p> -->
+	      		</div>
+      		</div>
+      	</div>
+      	<div class="col-sm-3 col-lg-3">	
+	  <!-- PAGE VIEWS BLOCK -->     
+      		<div class="half-unit">
+	      		<dtitle>Perna ativa</dtitle>
+	      		<hr>
+	      		<!-- <div class="cont">
+      			<p><bold>145.0K</bold></p>
+      			<p><img src="images/up-small.png" alt=""> 23.88%</p>
+	      		</div> -->
+	      		<div class="" style="padding-top:1px"></div>
+	      		<div class="switch switch-yellow">
+					<input type="radio" class="switch-input" name="view3" value="yes" id="yes" checked="">
+					<label for="yes" class="switch-label switch-label-off">Esquerda</label>
+					<input type="radio" class="switch-input" name="view3" value="no" id="no">
+					<label for="no" class="switch-label switch-label-on">Direita</label>
+					<span class="switch-selection"></span>
+				</div>
+
+      		</div>
+      	</div>
+
+      	<div class="col-sm-3 col-lg-3">	
+	  <!-- PAGE VIEWS BLOCK -->     
+      		<div class="half-unit">
+	      		<dtitle>Pontos Binário (Direita)</dtitle>
+	      		<hr>
+	      		<div class="cont">
+      			<p><bold>145</bold></p>
+      			<!-- <p><img src="images/up-small.png" alt=""> 23.88%</p> -->
+	      		</div>
+      		</div>
+      	</div>
+
+      	<div class="col-sm-3 col-lg-3">	
+	  <!-- PAGE VIEWS BLOCK -->     
+      		<div class="half-unit">
+	      		<dtitle>Indicados Diretos</dtitle>
+	      		<hr>
+	      		<div class="cont">
+      			<p><bold>300</bold></p>
+      			<!-- <p><img src="images/up-small.png" alt=""> 23.88%</p> -->
+	      		</div>
+      		</div>
+      	</div>
+
+     </div>
+
+     <div class="row">
+     	<div class="col-12 col-sm-4 col-lg-4">	
+	  <!-- PAGE VIEWS BLOCK -->     
+      		<div class="half-unit">
+	      		<dtitle>Valor vigente</dtitle>
+	      		<hr>
+	      		<div class="cont">
+	      		<p><bold>$150</bold></p>
+      			<p><img src="images/down-small.png" alt=""> $159,5 | <img src="images/up-small.png" alt="">  $155</p>
+	      		</div>
+      		</div>
+      	</div>
+      	<div class="col-12 col-sm-4 col-lg-4">	
+	  <!-- PAGE VIEWS BLOCK -->     
+      		<div class="half-unit">
+	      		<dtitle>Cronometro</dtitle>
+	      		<hr>
+	      		<div class="clockcenter">
+			      	<digiclock>12:45:25</digiclock>
+		      	</div>
+      		</div>
+      	</div>
+      	<div class="col-12 col-sm-4 col-lg-4">	
+	  <!-- PAGE VIEWS BLOCK -->     
+      		<div class="half-unit">
+	      		<dtitle>Doações disponíveis</dtitle>
+	      		<hr>
+	      		<div class="cont">
+      			<p><bold>80</bold></p>
+	      		</div>
+      		</div>
+      	</div>
+     </div>
+
+     <div class="row">
+     	<div class="col-sm-12">
+      		<div class="dash-unit">
+      		<dtitle>Other Information</dtitle>
+      		<hr>
+			    <div class="section-graph">
+			      <div id="importantchart"></div>
+			      <br>
+			      <div class="graph-info">
+			        <i class="graph-arrow"></i>
+			        <span class="graph-info-big">634.39</span>
+			        <span class="graph-info-small">+2.18 (3.71%)</span>
+			      </div>
+			    </div>
+			</div>
+        </div>
+     </div>
+
+	   
+      <!-- <div class="row">
         <div class="col-sm-3 col-lg-3">
-       <!-- MAIL BLOCK -->
+       
       		<div class="dash-unit">
       		<dtitle>Inbox (1)</dtitle>
       		<hr>
@@ -239,10 +358,10 @@
 			        </ul>
     			</div>
 			</div>
-		</div><!-- /dash-unit -->
-    </div><!-- /span3 -->
+			</div> 
+    	</div>  
 
-	  <!-- GRAPH CHART - lineandbars.js file -->     
+	  
         <div class="col-sm-3 col-lg-3">
       		<div class="dash-unit">
       		<dtitle>Other Information</dtitle>
@@ -259,7 +378,7 @@
 			</div>
         </div>
 
-	  <!-- LAST MONTH REVENUE -->     
+	  
         <div class="col-sm-3 col-lg-3">
       		<div class="dash-unit">
 	      		<dtitle>Last Month Revenue</dtitle>
@@ -278,7 +397,7 @@
 			</div>
         </div>
         
-	  <!-- 30 DAYS STATS - CAROUSEL FLEXSLIDER -->     
+	  
         <div class="col-sm-3 col-lg-3">
       		<div class="dash-unit">
 	      		<dtitle>Last 30 Days Stats</dtitle>
@@ -296,14 +415,16 @@
 				</div>   
 			</div>
         </div>
-      </div><!-- /row -->
+      </div> --> 
      
+
+
  
-	  <!-- THIRD ROW OF BLOCKS -->     
+	<!--  
       <div class="row">
       	<div class="col-sm-3 col-lg-3">
 	  
-	  <!-- BARS CHART - lineandbars.js file -->     
+	   
       		<div class="half-unit">
 	      		<dtitle>Stock Information</dtitle>
 	      		<hr>
@@ -323,7 +444,7 @@
 			      </div>
       		</div>
 
-	  <!-- TO DO LIST -->     
+	  
       		<div class="half-unit">
 	      		<dtitle>To Do List</dtitle>
 	      		<hr>
@@ -340,7 +461,7 @@
 
       	<div class="col-sm-3 col-lg-3">
 
-	  <!-- LIVE VISITORS BLOCK -->     
+	   
       		<div class="half-unit">
 	      		<dtitle>Live Visitors</dtitle>
 	      		<hr>
@@ -350,7 +471,7 @@
 	      		</div>
       		</div>
       		
-	  <!-- PAGE VIEWS BLOCK -->     
+	   
       		<div class="half-unit">
 	      		<dtitle>Page Views</dtitle>
 	      		<hr>
@@ -362,7 +483,7 @@
       	</div>
 
       	<div class="col-sm-3 col-lg-3">
-	  <!-- TOTAL SUBSCRIBERS BLOCK -->     
+	   
       		<div class="half-unit">
 	      		<dtitle>Total Subscribers</dtitle>
 	      		<hr>
@@ -372,7 +493,7 @@
 	      		</div>
       		</div>
       		
-	  <!-- FOLLOWERS BLOCK -->     
+	   
       		<div class="half-unit">
 	      		<dtitle>Twitter Followers</dtitle>
 	      		<hr>
@@ -383,7 +504,7 @@
       		</div>
       	</div>
 
-	  <!-- LATEST NEWS BLOCK -->     
+	   
       	<div class="col-sm-3 col-lg-3">
       		<div class="dash-unit">
 	      		<dtitle>Latest News</dtitle>
@@ -398,12 +519,12 @@
       			</div>
       		</div>
       	</div>
-      </div><!-- /row -->
+      </div>  -->
       
-	  <!-- FOURTH ROW OF BLOCKS -->     
+	<!--  
 	<div class="row">
 	
-	  <!-- TWITTER WIDGET BLOCK -->     
+	  
 		<div class="col-sm-3 col-lg-3">
 			<div class="dash-unit">
 	      		<dtitle>Twitter Widget</dtitle>
@@ -415,16 +536,16 @@
 		 		<div id="jstwitter" class="clearfix">
 					<ul id="twitter_update_list"></ul>
 				</div>
-				<script src="http://twitter.com/javascripts/blogger.js"></script><!-- Script Needed to load the Tweets -->
+				<script src="http://twitter.com/javascripts/blogger.js"></script> 
 				<script src="http://api.twitter.com/1/statuses/user_timeline/wrapbootstrap.json?callback=twitterCallback2&amp;count=1"></script>
-				<!-- To show your tweets replace "wrapbootstrap", in the line above, with your user. -->
+				 
 				<div class="text">
 				<p><grey>Show your tweets here!</grey></p>
 				</div>
 			</div>
 		</div>
 
-	  <!-- NOTIFICATIONS BLOCK -->     
+	   
 		<div class="col-sm-3 col-lg-3">
 			<div class="dash-unit">
 	      		<dtitle>Notifications</dtitle>
@@ -440,7 +561,7 @@
 			</div>
 		</div>
 
-	  <!-- SWITCHES BLOCK -->     
+	   
 		<div class="col-sm-3 col-lg-3">
 			<div class="dash-unit">
 	      		<dtitle>Switches</dtitle>
@@ -474,7 +595,7 @@
 			</div>
 		</div>
 
-	  <!-- GAUGE CHART BLOCK -->     
+	   
 		<div class="col-sm-3 col-lg-3">
 			<div class="dash-unit">
 	      		<dtitle>Gauge Chart</dtitle>
@@ -486,12 +607,12 @@
 			</canvas></div>
 		</div>
 	
-	</div><!--/row -->     
+	</div>  -->
       
- 	  <!-- FOURTH ROW OF BLOCKS -->     
-		<div class="row">
+ 	   
+		<!-- <div class="row">
 
- 	  <!-- ACCORDION BLOCK -->     
+ 	   
 			<div class="col-sm-3 col-lg-3">
 				<div class="dash-unit">
 	      		<dtitle>Accordion</dtitle>
@@ -535,13 +656,13 @@
 		                        </div>
 		                    </div>
 		                </div>
-		            </div><!--/accordion -->
+		            </div> 
 				</div>
 			</div>
 			
 			<div class="col-sm-3 col-lg-3">
 
- 	  		<!-- LAST USER BLOCK -->     
+ 	  		 
 				<div class="half-unit">
 	      		<dtitle>Last Registered User</dtitle>
 	      		<hr>
@@ -554,7 +675,7 @@
 	      			</div>
 				</div>
 				
- 	  		<!-- MODAL BLOCK -->     
+ 	  		 
 				<div class="half-unit">
 	      		<dtitle>Modal</dtitle>
 	      		<hr>
@@ -563,7 +684,7 @@
 		            </div>
 				</div>
 			</div>
-			<!-- Modal -->
+			 
 			  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			    <div class="modal-dialog">
 			      <div class="modal-content">
@@ -578,10 +699,10 @@
 			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			          <button type="button" class="btn btn-primary">Save changes</button>
 			        </div>
-			      </div><!-- /.modal-content -->
-			    </div><!-- /.modal-dialog -->
-			  </div><!-- /.modal -->
- 	  		<!-- FAST CONTACT BLOCK -->     
+			      </div> 
+			    </div> 
+			  </div> 
+ 	  		   
 			<div class="col-sm-3 col-lg-3">
 				<div class="dash-unit">
 	      		<dtitle>Fast Contact</dtitle>
@@ -597,7 +718,7 @@
 				</div>
 			</div>
 
- 	  		<!-- INFORMATION BLOCK -->     
+ 	  		 
 			<div class="col-sm-3 col-lg-3">
 				<div class="dash-unit">
 	      		<dtitle>Block Dashboard</dtitle>
@@ -614,18 +735,18 @@
 				</div>
 			</div>
 
-		</div><!--/row -->
+		</div> --> 
      
       
       
-	</div> <!-- /container -->
+	</div>  
 	<div id="footerwrap">
       	<footer class="clearfix"></footer>
       	<div class="container">
       		<div class="row">
       			<div class="col-sm-12 col-lg-12">
       			<p><img src="images/logo.png" alt=""></p>
-      			<p>Blocks Dashboard Theme - Crafted With Love - Copyright 2013</p>
+      			<p>Money Coin - Mutual Help</p>
       			</div>
 
       		</div><!-- /row -->

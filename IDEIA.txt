@@ -79,6 +79,28 @@ TAREFAS CRON
 
 https://github.com/akveo/ngx-admin
 
+--
+
+TELA DE VISUALIZAÇÃO
+
+Cotação do momento
+Status do preço (alta ou baixa)
+
+Doações disponiveis no momentos
+
+Gráfico de evolução
+
+
+Pacote ativo
+Saldo Total Disponível
+Ganho maximo do dia binario
+Ganho maximo do dia indicacao
+
+
+Perna binario ativa
+Pontos perna direita
+Pontos perna esquerda
+Qtd de indicados diretos
 
 ---
 Cotação do BTP

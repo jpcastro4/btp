@@ -181,7 +181,8 @@ h5 {
 	color:#ffffff;
 	margin:8px;
 	padding:0px;
-	height:inherit	
+	height:inherit;
+	text-align: center;
 	}
 	
 .half-unit hr {
