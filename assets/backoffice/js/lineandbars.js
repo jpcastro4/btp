@@ -22,7 +22,7 @@ $(function () {
         renderTo: 'importantchart',
         type: 'column',
         backgroundColor: 'transparent',
-        height: 140,
+        height: 290,
         marginLeft: 3,
         marginRight: 3,
         marginBottom: 0,
@@ -66,7 +66,7 @@ $(function () {
       plotOptions: {
         column: {
           borderWidth: 0,
-          color: '#b2c831',
+          color: '#00a69c',
           shadow: false
         },
         line: {

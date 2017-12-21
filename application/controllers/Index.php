@@ -3,10 +3,9 @@
 class Index extends CI_Controller {
 
     public function __construct(){
-        parent::__construct();
-
-
+        parent::__construct();         
     }
+
 
     public function index(){
         // $this->native_session->unset_userdata('user_id');
@@ -16,6 +15,48 @@ class Index extends CI_Controller {
         
         $this->load->view('index/index');
         //echo "Em manutencao";
+    }
+
+    public function pacotes(){
+
+        $this->load->view('index/pacotes'); 
+
+    }
+
+    public function choose_package($pacoteID){
+
+        if(!empty($pacoteID)){
+
+            $this->native_session->set('pacoteID',$pacoteID);
+            redirect('register');
+        }
+
+    }
+
+    public function cadastrar(){
+
+        if( $this->native_session->get('usuario_id') ){
+
+            redirect('backoffice/cart');
+        }
+
+        $indicadorLogin = $this->native_session->get('indidadorLogin');
+        
+        $data = array();
+
+        if(!empty($indicadorLogin)){
+
+            $this->db->where('usuarioLogin', $indicadorLogin);
+            $user = $this->db->get('usuarios');
+
+            if($user->num_rows() > 0){
+
+                $this->native_session->set_flashdata('indicador', $indicadorLogin);
+                $this->native_session->set_flashdata('nome_completo', $user->row()->usuarioNome);
+            } 
+        }       
+
+        $this->load->view('backoffice/cadastrar', $data); 
     }
 
     public function rede(){

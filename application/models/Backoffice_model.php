@@ -11,6 +11,143 @@ class Backoffice_model extends CI_Model{
         date_default_timezone_set('America/Sao_Paulo');
     }
 
+
+
+
+    public function processaPagamento(){
+        
+        $post = $this->input->post();
+
+        $pacoteID = $post['pacoteID'];
+        $usuarioID = $post['usuarioID'];
+
+        //consulta se há algum pedido aguardando em nome do usuario
+        $this->db->where('usuarioID',$usuarioID);
+        $this->db->where('pedidoStatus',1);
+        $pedidoAberto = $this->db->get('pedidos');
+
+        if($pedidoAberto->num_rows() > 0 ){
+
+            echo json_encode(array('return'=>FALSE,'message'=>'Existe pedido de pacote aguardando aprovação.'));
+            return;
+        }
+ 
+        $secret = 'ZzsMLGKe162CfA5EcG6j@';
+        $pedidoKey = md5(date('Y-m-d H:i:s').$post['usuarioID'].$secret);
+        $my_xpub = 'xpub6CiWQwtbo6sY7WvakAZj5nperxTTHfRSLL9ZkAqZuUvY2VF8sYk8sqGnnBpkLDxXS7CXxKA7U77SDj7opLkeyGGfXAo1HvLdZ3GJGZMRLXy';
+        $my_api_key = '4f17791e-7ceb-4c67-b623-0aec797afc75';
+
+        $this->db->where('pacoteID',$pacoteID);
+        $pacote = $this->db->get('pacotes')->row();
+
+        $valor = file_get_contents('http://blockchain.info/tobtc?currency=USD&value='.$pacote->pacoteValor);
+
+        //abrindo pedido no sistema
+        $pedidoAbrir = array(
+            'pacoteID'=>$pacoteID,
+            'usuarioID'=>$usuarioID,
+            'pedidoStatus'=>2,// 0 para cancelado, 1 para aguardando, 2 para aprovado,
+            'pedidoKey'=>$pedidoKey,
+            'btcValor'=> $valor,
+            'pedidoDtAbertura'=>date('Y-m-d H:i:s')
+        );
+        $this->db->insert('pedidos', $pedidoAbrir);
+        $novoPedidoID = $this->db->insert_id();
+        
+        //montando url de retorno
+        //$my_callback_url = site_url().'returnPagamento/'.$novoPedidoID.'/'.$pedidoKey;
+
+        // $root_url = 'https://api.blockchain.info/v2/receive';
+        // $parameters = 'xpub=' .$my_xpub. '&callback=' .urlencode($my_callback_url). '&key=' .$my_api_key;
+        // $response = file_get_contents($root_url . '?' . $parameters);
+        //$object = json_decode($response);
+
+        $address = 'Endereço ficticio para teste';
+
+        $this->load->library('ciqrcode');
+
+        $params['data'] = $address;
+        $params['level'] = 'H';
+        $params['size'] = 10;
+        $params['savename'] = FCPATH.'/wallets/'.$novoPedidoID.'.png';
+        $this->ciqrcode->generate($params);
+
+
+        $this->db->where('pedidoID',$novoPedidoID);
+        $this->db->update('pedidos', array('pedidoEndWallet'=>$address) );
+
+        $url = base_url('backoffice/order/'.$novoPedidoID);
+
+        echo json_encode(array('success'=>'TRUE','message'=>'Pedido realizado. Aguarde Conclusão', 'url'=>$url));
+        return;
+        
+
+    }
+
+    public function returnPagamento($pedidoID,$pedidoKey){
+
+        //retorna o pagamento da blockchain com o resultado e muda status do usuario e ativa o pacote comprado
+
+        if($block)
+
+
+        $this->db->where(array('pedidoID'=>$pedidoID,'pedidoKey'=>$pedidoKey));
+        $this->db->update('pedidos', array('pedidoStatus'=>2));
+
+        //Traz dados do pedido
+        $this->db->where('pedidoID',$pedidoID);
+        $pedido = $this->db->get('pedidos')->row();
+
+        //Traz dados do pacote
+        $this->db->where('pacoteID',$pacoteID);
+        $pacote = $this->db->get('pacotes')->row();
+
+        $novoSaldo = $pacote->pacoteValor;
+        //Traz dados do usuario
+        $this->db->where('usuarioID',$pedido->usuarioID);
+        $usuario = $this->db->get('usuarios')->row();
+        $saldoAnterior = $usuario->usuarioSaldo;
+        $pontosPlanoAnterior = $usuario->usuarioPontosPlano;
+        //aqui vamos disparar todos os gatilhos de bonificação pontuação e atualização de valores
+
+        //GATILHO 1 - Atualização do perfil do usuario. Inserção de saldo e pontuações, ativação do pacote.
+        $this->db->where('usuarioID',$pedido->usuarioID);
+        $updateUser = array(
+            'usuarioPacoteAtivo'=>$pedido->pacoteID,
+            'usuarioSaldo'=>$saldoAnterior+$novoSaldo,
+            'usuarioPontosPlano'=>$pontosPlanoAnterior+$pacotePntsAtivacao
+        );
+    }
+
+    public function get_pedido($pedidoID){
+
+        $this->db->where('pedidoID',$pedidoID);
+        $result = $this->db->get('pedidos')->row();
+
+        return $result;
+    }
+
+    public function get_usuario(){
+        $sessao = $this->native_session->get('usuario_id');
+
+        $this->db->select('*, (U.usuarioPntsBinario * 100 / P.pacoteTetoBinDiario)  as percTetoBinario, (U.usuarioPntsDireta * 100 / P.pacoteTetoDireta)  as percTetoDireta');
+        $this->db->where('usuarioID',$sessao);
+        $this->db->join('pacotes as P', 'P.pacoteID = U.usuarioPacoteAtivo', 'LEFT');
+        $this->db->from('usuarios as U');
+        $result = $this->db->get();
+
+        return $result->row();
+    }
+
+    public function numIndicados(){
+        $sessao = $this->native_session->get('usuario_id');
+
+        $this->db->where('usuarioIndicador',$sessao);
+        $result = $this->db->get('usuarios');
+
+        return $result->num_rows();
+    }
+
     public function todasAsDoacoes(){
         $this->db->where('status',1);
         $this->db->or_where('status',2);
@@ -1122,16 +1259,16 @@ class Backoffice_model extends CI_Model{
     }
 
 
-    public function numIndicados($id){
+    // public function numIndicados($id){
 
-        $this->db->where_in('idIndicador', $id);
-        $downlines = $this->db->get('indicadores');
+    //     $this->db->where_in('idIndicador', $id);
+    //     $downlines = $this->db->get('indicadores');
 
-        $result['num_rows'] = $downlines->num_rows();
+    //     $result['num_rows'] = $downlines->num_rows();
 
-        return (object) $result;
+    //     return (object) $result;
 
-    }
+    // }
 
 
 

@@ -123,40 +123,40 @@
           <div class="col-sm-6 col-lg-6 mx-auto">
             <div id="register-wraper">
                 <form id="register-form" action="<?php echo site_url() ?>form/cadastrar" class="form" method="post" >
-                    <legend>User Register</legend>
+                    <legend><?php echo $this->lang->line('user_register') ?></legend>
                 
                     <div class="body">
                       <!-- first name -->
-                    <label for="name">First name</label>
+                    <label for="name"><?php echo $this->lang->line('firstname') ?> </label>
                     <input name="usuarioNome" class="form-control" type="text">
                       <!-- last name -->
-                    <label for="surname">Last name</label>
+                    <label for="surname"><?php echo $this->lang->line('lastname') ?></label>
                     <input name="usuarioSobrenome" class="form-control" type="text">
 
-                    <label for="surname">CPF</label>
+                    <label for="surname"><?php echo $this->lang->line('document_id') ?></label>
                     <input name="usuarioCpf" class="form-control" type="number">
 
                     <!-- email -->
-                    <label>E-mail</label>
+                    <label><?php echo $this->lang->line('email') ?></label>
                     <input name="usuarioEmail"  class="form-control" type="text">
 
-                    <label for="surname">Telefone</label>
+                    <label for="surname"><?php echo $this->lang->line('cellphone') ?></label>
                     <input name="usuarioTelefone" class="form-control" type="number">
 
                     <!-- username -->
-                    <label>Username</label>
+                    <label><?php echo $this->lang->line('username') ?></label>
                     <input name="usuarioLogin"  class="form-control" type="text">
                     <!-- password -->
-                    <label>Password</label>
+                    <label><?php echo $this->lang->line('password') ?></label>
                     <input name="usuarioSenha" class="form-control" type="password">
 
                     </div>
                 
                     <div class="footer">
                         <label class="checkbox inline">
-                            <input type="checkbox" id="inlineCheckbox1" value="option1"> I agree with the terms &amp; conditions
+                            <input type="checkbox" id="inlineCheckbox1" value="option1"> <?php echo $this->lang->line('terms_conditions') ?>
                         </label>
-                        <button type="submit" class="btn btn-success">Register</button>
+                        <button type="submit" class="btn btn-success"><?php echo $this->lang->line('register') ?></button>
                     </div>
                 </form>
             </div>
@@ -171,7 +171,7 @@
           <div class="row">
             <div class="col-sm-12 col-lg-12">
             <p><img src="<?php echo site_url('assets/backoffice/')?>images/logo.png" alt=""></p>
-            <p>Blocks Dashboard Theme - Crafted With Love - Copyright 2013</p>
+            <p>BitPrime - CryptoCredits - Mutual Helper</p>
             </div>
 
           </div><!-- /row -->

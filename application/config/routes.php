@@ -53,12 +53,22 @@ $route['default_controller'] = "index";
 $route['404_override'] = '';
 // $route['translate_uri_dashes'] = FALSE;
 
+
 $route['politicas'] = 'index/politicas';
+
+
+$route['packages'] = 'index/pacotes';
+$route['choose-package/(:num)'] = 'index/choose_package/$1';
+
+$route['register/(:any)'] = 'index/cadastrar/$1';
+$route['register'] = 'index/cadastrar';
+
+$route['backoffice/cart'] = 'backoffice/carrinho';
+
+$route['backoffice/order/(:num)'] = 'backoffice/pedido/$1';
 
 $route['ativacao/(:num)'] = 'index/ativacao/$1';
 $route['valida/(:any)'] = 'index/valida/$1';
-
-$route['cadastrar'] = 'painel/cadastrar';
 
 $route['amigo/(:any)'] = 'painel/amigo/$1';
 $route['linkunico/amigo/(:any)'] = 'painel/linkunico/$1';

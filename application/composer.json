@@ -1,0 +1,11 @@
+{
+    "name": "application/btp",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Joao Paulo",
+            "email": "jpcastro4@gmail.com"
+        }
+    ],
+    "require": {}
+}

@@ -49,11 +49,11 @@
           <?php if(isset($mensagem)) echo $mensagem; ?>
           <div class="form-group has-icon-left form-control-email">
             <label class="sr-only" for="inputEmail">CPF</label>
-            <input type="text" minlength="1" name="cpf" class="form-control form-control-lg" id="inputEmail" placeholder="CPF ou Email" autocomplete="off">
+            <input type="text" minlength="1" name="usuarioEmail" class="form-control form-control-lg" id="inputEmail" placeholder="CPF ou Email" autocomplete="off">
           </div>
           <div class="form-group has-icon-left form-control-password">
             <label class="sr-only" for="inputPassword">Senha</label>
-            <input type="password" name="senha" class="form-control form-control-lg" id="inputPassword" placeholder="Senha" autocomplete="off">
+            <input type="password" name="usuarioSenha" class="form-control form-control-lg" id="inputPassword" placeholder="Senha" autocomplete="off">
           </div>
 
           <button type="submit" value="submit" name="submit" class="btn btn-primary btn-block">Acessar</button>

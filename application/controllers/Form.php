@@ -7,6 +7,7 @@ class Form extends CI_Controller {
 
         $this->load->model('admin_model', 'admin');
         $this->load->model('usuario_model', 'usuario');
+        $this->load->model('backoffice_model', 'backoffice');
     }
 
     public function index(){
@@ -38,4 +39,6 @@ class Form extends CI_Controller {
 
         $this->usuario->NovoUsuario();
     }
+
+    
 }

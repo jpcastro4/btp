@@ -101,82 +101,25 @@ class Usuario_model extends CI_Model{
             return;
         }
 
-        //REDIRECIONA PARA A TELA DE PAGAMENTO
+        //REDIRECIONA PARA O CARRINHO DE PAGAMENTO
 
-        $pacoteID = $this->native_session->get('pacoteID');
-        redirect('backoffice/carrinho/'.$pacoteID);
+        //$pacoteID = $this->native_session->get('pacoteID');
+        redirect('backoffice/carrinho');
 
           
 
-        if($pagamento){
-            $infoCadastrado = $this->painel_model->infoUser($id_novo_usuario);
-            $nomeCadastrado = $infoCadastrado->nome;
-            $this->painel_model->InserirExtrato($id_indicador, 'indicou o amigo '.$nomeCadastrado.' #'.$id_novo_usuario , 'novoinidcado');
+        // if($pagamento){
+        //     $infoCadastrado = $this->painel_model->infoUser($id_novo_usuario);
+        //     $nomeCadastrado = $infoCadastrado->nome;
+        //     $this->painel_model->InserirExtrato($id_indicador, 'indicou o amigo '.$nomeCadastrado.' #'.$id_novo_usuario , 'novoinidcado');
 
-            $this->native_session->set_flashdata('mensagem','<div class="alert alert-success text-center" >Usuário cadastrado com sucesso <a href="'. base_url('').'"><strong> Clique aqui e faça o login</strong></a></div>');            
-        }
+        //     $this->native_session->set_flashdata('mensagem','<div class="alert alert-success text-center" >Usuário cadastrado com sucesso <a href="'. base_url('').'"><strong> Clique aqui e faça o login</strong></a></div>');            
+        // }
         
     }
 
 
-    public function processaPagamento(){
-        
-        $post = $this->input->post();
-
-        $pacoteID = $post['pacoteID'];
-        $usuarioID = $post['usuarioID'];
-
-        //consulta se há algum pedido aguardando em nome do usuario
-        $this->db->where('usuarioID',$usuarioID);
-        $this->db->where('pedidoStatus',1);
-        $pedidoAberto = $this->db->get('pedidos');
-
-        if($pedidoAberto->num_rows() > 0 ){
-
-            echo json_encode(array('return'=>FALSE,'message'=>'Existe pedido de pacote aguardando aprovação.'));
-            return;
-        }
-
-
-        $secret = 'ZzsMLGKe162CfA5EcG6j@';
-        $pedidoKey = md5(date('Y-m-d H:i:s').$post['usuarioID'].$secret);
-        $my_xpub = 'xpub6CiWQwtbo6sY7WvakAZj5nperxTTHfRSLL9ZkAqZuUvY2VF8sYk8sqGnnBpkLDxXS7CXxKA7U77SDj7opLkeyGGfXAo1HvLdZ3GJGZMRLXy';
-        $my_api_key = '{YOUR API KEY}';
-
-
-        //abrindo pedido no sistema
-        $pedidoAbrir = array(
-            'pacoteID'=>$pacoteID,
-            'usuarioID'=>$usuarioID,
-            'pedidoStatus'=>1,// 0 para cancelado, 1 para aguardando, 2 para aprovado,
-            'pedidoKey'=>$pedidoKey
-        );
-        $this->db->insert('pedidos', $pedidoAbrir);
-        $novoPedidoID = $this->db->insert_id();
-        
-        //abrindo endereço na blockchain
-        $my_callback_url = site_url().$novoPedidoID.'/'.$pedidoKey;
-
-        // $root_url = 'https://api.blockchain.info/v2/receive';
-        // $parameters = 'xpub=' .$my_xpub. '&callback=' .urlencode($my_callback_url). '&key=' .$my_api_key;
-        // $response = file_get_contents($root_url . '?' . $parameters);
-        //$object = json_decode($response);
-
-        $address = 'ficticio';
-
-        $this->db->where('pedidoID',$novoPedidoID);
-        $this->db->update('pedidos', array('pedidoEndWallet'=>$address) );
-
-        echo json_encode(array('return'=>TRUE,'message'=>'Pedido realizado.'));
-        return;
-
-        //redirect('pagamento/'.$novoPedidoID);
-    }
-
-    public function returnPagamento(){
-
-        //retorna o pagamento da blockchain com o resultado e muda status do usuario e ativa o pacote comprado
-    }
+    
    
     public function RecuperarSenha(){
 

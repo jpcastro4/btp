@@ -1,6 +1,6 @@
 <?php 
 
-    $this->native_session->set('usuario_id', 1);
+    //$this->native_session->set('usuario_id', 2);
  ?>
 <!doctype html>
 <html><head>
@@ -74,12 +74,12 @@
     <div class="container">
         <div class="row">
 
-          <div class="col-12"></div>
+          
            
-          <div class="col-sm-6 col-lg-6 mx-auto">
+          <div class="col-12 col-sm-6 col-lg-6 mx-auto">
             <div id="register-wraper">
                 <form id="register-form" class="form" method="post" >
-                    <legend>Buy your package</legend>
+                    <legend><?php echo $this->lang->line('confirm_buy_pack') ?></legend>
 
                     <h2><strong><?php echo $pacote->pacoteNome; ?></strong></h2>
  
@@ -87,9 +87,9 @@
 
                     <span class="price">BTP <?php echo $pacote->pacoteValor; ?><br/></span>
 
-                    <span class="price">BTC <?php $valor = file_get_contents('http://blockchain.info/tobtc?currency=USD&value='.$pacote->pacoteValor);
+                    <!-- <span class="price">BTC <?php $valor = file_get_contents('http://blockchain.info/tobtc?currency=USD&value='.$pacote->pacoteValor);
                                 echo $valor; ?><br/><br/></span>
-
+                    <input type="hidden" name="value" value="<?php echo $valor; ?>" > -->
                     <input type="hidden" name="pacoteID" value="<?php echo $pacote->pacoteID; ?>">
                     <input type="hidden" name="usuarioID" value="<?php echo $this->native_session->get('usuario_id') ?>">
                     
@@ -99,6 +99,8 @@
                 </form>
             </div>
           </div>
+
+          <div class="col-12 text-center"> <a href="<?php echo base_url('packages') ?>"><?php echo $this->lang->line('change_packages') ?></a></div>
 
         </div>
     </div>
@@ -126,8 +128,16 @@
 
                 $.post(ajaxurl+'processaPagamento', $(this).serialize() ,function(data){
 
-                    console.log(data)
-                })
+                  console.log(data.success)
+
+                    if(data.success == 'TRUE'){
+
+                      if(data.url){
+                        window.location.href = data.url
+                      }
+
+                    }
+                },'json')
             })
       })
   </script>

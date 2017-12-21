@@ -6,6 +6,7 @@ class Ajax_functions extends CI_Controller {
         parent::__construct();
 
         $this->load->model('usuario_model');
+        $this->load->model('backoffice_model');
     }
 
     public function index(){
@@ -14,7 +15,7 @@ class Ajax_functions extends CI_Controller {
 
     public function processaPagamento(){
 
-        $this->usuario_model->processaPagamento();
+        $this->backoffice_model->processaPagamento();
     }
 
     public function resolution(){

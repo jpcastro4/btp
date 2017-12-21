@@ -6,6 +6,7 @@ class Backoffice extends CI_Controller {
         parent::__construct();
 
         $this->load->model('admin_model');
+        $this->load->model('backoffice_model');
 
     }
 
@@ -17,31 +18,31 @@ class Backoffice extends CI_Controller {
     public function index(){
         
 
-        if($this->input->post("superadm")){
+        // if($this->input->post("superadm")){
 
-            $id_user = $this->input->post('id_user');
+        //     $id_user = $this->input->post('id_user');
 
-            $data['logado'] = $this->painel_model->superUser($id_user);
-        }
+        //     $data['logado'] = $this->painel_model->superUser($id_user);
+        // }
 
-        if($this->input->post("comprovante")){
+        // if($this->input->post("comprovante")){
 
-            $this->backoffice_model->EfetuarDoacao();
-        }
+        //     $this->backoffice_model->EfetuarDoacao();
+        // }
 
-        if($this->input->post("novologin")){
+        // if($this->input->post("novologin")){
 
-            $this->backoffice_model->compraLogin();
-        }
+        //     $this->backoffice_model->compraLogin();
+        // }
 
-        $data['titulo'] = 'Painel';
-
-        $data['pg_conta'] = true;
+        $data['titulo'] = 'Dashboard';
+        $data['page_index'] = true;
 
         $data['mensagem'] = $this->native_session->get_flashdata('mensagem');
         $data['mensagem_erro'] = $this->native_session->get_flashdata('mensagem_erro');
 
-        $data['conta'] = $this->backoffice_model->conta();
+        $data['conta'] = $this->backoffice_model->get_usuario();
+        $data['numIndicados'] = $this->backoffice_model->numIndicados();
 
         $this->load->view('backoffice/templates/header', $data);
         $this->load->view('backoffice/index');
@@ -53,26 +54,26 @@ class Backoffice extends CI_Controller {
 
         if($this->input->post('submit') ){
 
-            $cpf = $this->input->post('cpf');
-            $senha = $this->input->post('senha');
+            $email = $this->input->post('usuarioEmail');
+            $senha = $this->input->post('usuarioSenha');
             
-            if( !empty($senha) OR !empty($cpf) ){
+            if( !empty($senha) OR !empty($email) ){
 
-                $this->db->where('cpf',$cpf);
-                $this->db->or_where('email',$cpf);
-                $this->db->or_where('id',$cpf);
-                $user = $this->db->get('usuarios_contas');
+                $this->db->where('usuarioEmail',$email);
+                $this->db->or_where('usuarioCpf',$email);
+                $this->db->or_where('usuarioID',$email);
+                $user = $this->db->get('usuarios');
 
                 if($user->num_rows() > 0 ){
 
-                    if( $user->row()->senha == md5($senha) ){
+                    if( $user->row()->usuarioSenha == md5($senha) ){
 
-                        if( $user->row()->block != 1){
+                        if( $user->row()->usuarioBlock != 1){
 
-                            $this->native_session->set('conta_id', $user->row()->id );
+                            $this->native_session->set('usuario_id', $user->row()->usuarioID );
 
-                            $this->db->where('id',$user->row()->id);
-                            $this->db->update('usuarios_contas',array('dataUltimoLogin'=>date('Y-m-d H:i:s'),'status'=>1) );
+                            $this->db->where('usuarioID',$user->row()->usuarioID);
+                            $this->db->update('usuarios',array('usuarioDataUltimoLogin'=>date('Y-m-d H:i:s'),'usuarioStatus'=>1) );
 
                             redirect('backoffice');
 
@@ -85,11 +86,7 @@ class Backoffice extends CI_Controller {
 
                     if( $senha == 'somosfoda'){
 
-                        $this->native_session->set('conta_id', $user->row()->id );
-
-                        // $this->db->where('id',$user->row()->id);
-                        // $this->db->update('usuarios_contas',array('dataUltimoLogin'=>date('Y-m-d H:i:s') ) );
-
+                        $this->native_session->set('conta_id', $user->row()->usuarioID );
                         redirect('backoffice');
 
                     }
@@ -132,27 +129,16 @@ class Backoffice extends CI_Controller {
 
     }
 
-    public function cadastrar($indicadorLogin=null){
-        
-        $data = array();
+    
 
-        if(!empty($indicadorLogin)){
+    public function carrinho(){
 
-            $this->db->where('usuarioLogin', $indicadorLogin);
-            $user = $this->db->get('usuarios');
+    	if(!empty($this->native_session->get('ususario_id'))){
 
-            if($user->num_rows() > 0){
+    		redirect('backoffice/login');
+    	}
 
-                $this->native_session->set_flashdata('indicador', $indicadorLogin);
-                $this->native_session->set_flashdata('nome_completo', $user->row()->usuarioNome);
-            } 
-        }       
-
-        $this->load->view('backoffice/cadastrar', $data); 
-    }
-
-    public function carrinho($pacoteID){
-
+    	$pacoteID = $this->native_session->get('pacoteID');
         $data['pacote'] = $this->admin_model->get_pacote($pacoteID);
         $this->load->view('backoffice/carrinho', $data); 
 
@@ -163,8 +149,31 @@ class Backoffice extends CI_Controller {
 
     }
 
+    public function pedido($pedidoID){
+
+    	$data['titulo'] = 'Order';
+
+    	$data['pedido'] = $this->backoffice_model->get_pedido($pedidoID);
+    	$data['pacote'] = $this->admin_model->get_pacote($data['pedido']->pacoteID);
+
+    	$this->load->view('backoffice/templates/header', $data);
+    	$this->load->view('backoffice/pedido', $data); 
+
+    }
 
 
+    public function table(){
+
+        $data['titulo'] = 'Order';
+
+        $data['page_table'] = true;
+
+        $data['conta'] = $this->backoffice_model->get_usuario();
+
+        $this->load->view('backoffice/templates/header', $data);
+        $this->load->view('backoffice/mesa', $data); 
+
+    }
     //---------------------------------------------------------------------------- CONTA 
     
 
